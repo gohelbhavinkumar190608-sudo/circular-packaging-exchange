@@ -1,4 +1,4 @@
-﻿services:
+services:
   - type: web
     name: circular-packaging-exchange
     runtime: node
@@ -9,5 +9,4 @@
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 5000
+

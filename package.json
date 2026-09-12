@@ -1,0 +1,16 @@
+{
+  "name": "circular-packaging-exchange",
+  "version": "1.0.0",
+  "description": "B2B Circular Packaging & Materials Exchange Platform",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "node server/server.js",
+    "build": "npm.cmd --prefix client run build",
+    "dev": "node dev-runner.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

@@ -254,12 +254,39 @@ router.post("/", (req, res) => {
 // PATCH /api/listings/:id/status
 router.patch("/:id/status", (req, res) => {
   try {
-    const { status, claimed_by } = req.body;
+    const { status, claimed_by, buyer_email, buyer_address, claimed_quantity } = req.body;
     if (!status) {
       return res.status(400).json({ success: false, error: "Status is required" });
     }
 
-    const updated = db.updateListingStatus(req.params.id, status, { claimed_by });
+    const listing = db.getListingById(req.params.id);
+    if (!listing) {
+      return res.status(404).json({ success: false, error: "Listing not found" });
+    }
+
+    // Strict Loophole Prevention: Seller cannot claim or buy their own product
+    if (status === "reserved" || status === "sold") {
+      const buyerName = (claimed_by || "").trim().toLowerCase();
+      const sellerName = (listing.business_name || "").trim().toLowerCase();
+      const bEmail = (buyer_email || "").trim().toLowerCase();
+      const sEmail = (listing.contact_email || "").trim().toLowerCase();
+
+      if ((buyerName && sellerName && buyerName === sellerName) ||
+          (bEmail && sEmail && bEmail === sEmail)) {
+        return res.status(400).json({
+          success: false,
+          error: "Self-purchase prohibited: You cannot claim or buy your own product listing."
+        });
+      }
+    }
+
+    const updated = db.updateListingStatus(req.params.id, status, {
+      claimed_by,
+      buyer_email,
+      buyer_address,
+      claimed_quantity
+    });
+
     if (!updated) {
       return res.status(404).json({ success: false, error: "Listing not found" });
     }
@@ -274,6 +301,104 @@ router.patch("/:id/status", (req, res) => {
     });
   } catch (err) {
     console.error("[Listings API] Error updating listing status:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// POST /api/listings/:id/inquiry
+// Formal RFQ / Purchase Request dispatched directly to the selling company
+router.post("/:id/inquiry", (req, res) => {
+  try {
+    const listing = db.getListingById(req.params.id);
+    if (!listing) {
+      return res.status(404).json({ success: false, error: "Listing not found" });
+    }
+
+    const {
+      buyer_name,
+      buyer_email,
+      buyer_address,
+      buyer_city,
+      requested_quantity,
+      message,
+      pickup_date_proposal
+    } = req.body;
+
+    const reqQty = Number(requested_quantity) || listing.quantity;
+    const unitPrice = listing.price_per_unit_inr || (listing.quantity > 0 ? listing.price_total_inr / listing.quantity : 0);
+    const offeredTotal = Math.round(reqQty * unitPrice);
+
+    const inquiry = db.saveInquiry({
+      listing_id: listing.listing_id,
+      seller_name: listing.business_name,
+      seller_email: listing.contact_email,
+      buyer_name: buyer_name || "Verified B2B Enterprise",
+      buyer_email: buyer_email || "",
+      buyer_address: buyer_address || "",
+      buyer_city: buyer_city || "",
+      requested_quantity: reqQty,
+      unit: listing.unit,
+      offered_total_inr: offeredTotal,
+      message: message || "Formal request for quote and pickup coordination.",
+      pickup_date_proposal: pickup_date_proposal || ""
+    });
+
+    res.status(201).json({
+      success: true,
+      message: `Inquiry successfully dispatched to ${listing.business_name} (${listing.contact_email}).`,
+      inquiry
+    });
+  } catch (err) {
+    console.error("[Listings API] Error saving inquiry:", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// DELETE /api/listings/:id
+// Enforces strict ownership: User can ONLY remove their own listings!
+router.delete("/:id", (req, res) => {
+  try {
+    const listing = db.getListingById(req.params.id);
+    if (!listing) {
+      return res.status(404).json({ success: false, error: "Listing not found" });
+    }
+
+    const requesterName = (
+      req.body?.user_name ||
+      req.query?.user_name ||
+      req.headers["x-user-name"] ||
+      ""
+    ).trim().toLowerCase();
+
+    const requesterEmail = (
+      req.body?.user_email ||
+      req.query?.user_email ||
+      req.headers["x-user-email"] ||
+      ""
+    ).trim().toLowerCase();
+
+    const ownerName = (listing.business_name || "").trim().toLowerCase();
+    const ownerEmail = (listing.contact_email || "").trim().toLowerCase();
+
+    // Check ownership
+    const isOwner = (requesterName && ownerName && requesterName === ownerName) ||
+                    (requesterEmail && ownerEmail && requesterEmail === ownerEmail);
+
+    if (!isOwner) {
+      return res.status(403).json({
+        success: false,
+        error: `Permission denied: You can only remove your own products. This listing belongs to '${listing.business_name}'.`
+      });
+    }
+
+    const deleted = db.deleteListing(req.params.id);
+    res.json({
+      success: true,
+      message: `Listing ${req.params.id} removed successfully.`,
+      listing: deleted
+    });
+  } catch (err) {
+    console.error("[Listings API] Error deleting listing:", err);
     res.status(500).json({ success: false, error: err.message });
   }
 });

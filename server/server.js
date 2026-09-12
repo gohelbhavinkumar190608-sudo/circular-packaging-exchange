@@ -8,13 +8,25 @@ const impactRouter = require("./routes/impact");
 const logisticsRouter = require("./routes/logistics");
 const businessesRouter = require("./routes/businesses");
 const systemRouter = require("./routes/system");
+const uploadRouter = require("./routes/upload");
+const authRouter = require("./routes/auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Middleware (Support high-resolution images up to 50MB)
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+// Serve uploaded photos directly
+const serverUploadsPath = path.join(__dirname, "uploads");
+const clientUploadsPath = path.join(__dirname, "..", "client", "dist", "uploads");
+if (!require("fs").existsSync(serverUploadsPath)) {
+  require("fs").mkdirSync(serverUploadsPath, { recursive: true });
+}
+app.use("/uploads", express.static(serverUploadsPath));
+app.use("/uploads", express.static(clientUploadsPath));
 
 // API Routes
 app.use("/api/listings", listingsRouter);
@@ -22,6 +34,8 @@ app.use("/api/matching", matchingRouter);
 app.use("/api/impact", impactRouter);
 app.use("/api/logistics", logisticsRouter);
 app.use("/api/businesses", businessesRouter);
+app.use("/api/upload", uploadRouter);
+app.use("/api/auth", authRouter);
 app.use("/api", systemRouter);
 
 // Serve static frontend in production / build

@@ -7,18 +7,34 @@ import MatchingEnginePage from './pages/MatchingEnginePage';
 import SellListingPage from './pages/SellListingPage';
 import ImpactDashboardPage from './pages/ImpactDashboardPage';
 import BusinessProfilePage from './pages/BusinessProfilePage';
+import LoginPage from './pages/LoginPage';
+import ProfilePage from './pages/ProfilePage';
 import { DEMO_ACCOUNTS } from './data/constants';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function App() {
   // Navigation
-  const [currentTab, setCurrentTab] = useState('marketplace'); // marketplace, detail, matcher, sell, impact, businesses
+  const [currentTab, setCurrentTab] = useState('marketplace'); // marketplace, detail, matcher, sell, impact, businesses, login, profile
   const [selectedListingId, setSelectedListingId] = useState(null);
   const [selectedBusinessName, setSelectedBusinessName] = useState(null);
 
-  // App settings & Persona
+  // App settings & Persona (saved in localStorage)
   const [buyerCity, setBuyerCity] = useState('Mumbai');
-  const [currentUser, setCurrentUser] = useState(DEMO_ACCOUNTS[0]);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    try {
+      return !!(localStorage.getItem('loop_exchange_user') || localStorage.getItem('loop_exchange_token'));
+    } catch (e) {
+      return false;
+    }
+  });
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('loop_exchange_user');
+      return saved ? JSON.parse(saved) : DEMO_ACCOUNTS[0];
+    } catch (e) {
+      return DEMO_ACCOUNTS[0];
+    }
+  });
   const [refreshTrigger, setRefreshTrigger] = useState(Date.now());
   const [toast, setToast] = useState(null);
 
@@ -44,6 +60,23 @@ export default function App() {
     showToast(`Listing ${newListing.listing_id} published successfully with status 'available'!`);
     setSelectedListingId(newListing.listing_id);
     setCurrentTab('detail');
+  };
+
+  const handleLoginSuccess = (user) => {
+    setCurrentUser(user);
+    setIsLoggedIn(true);
+    if (user.city) setBuyerCity(user.city);
+    showToast(`Welcome, ${user.name}! Authenticated successfully.`);
+    setCurrentTab('profile'); // Immediately take the user to their profile to see their products!
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('loop_exchange_user');
+    localStorage.removeItem('loop_exchange_token');
+    setIsLoggedIn(false);
+    setCurrentUser(DEMO_ACCOUNTS[0]);
+    showToast('Signed out of enterprise account.');
+    setCurrentTab('marketplace');
   };
 
   const handleListingUpdated = () => {
@@ -90,8 +123,11 @@ export default function App() {
         currentUser={currentUser}
         setCurrentUser={(user) => {
           setCurrentUser(user);
+          setIsLoggedIn(true);
           showToast(`Active persona changed to ${user.name} (${user.type})`);
         }}
+        isLoggedIn={isLoggedIn}
+        onLogout={handleLogout}
       />
 
       {/* Dynamic Content Views */}
@@ -101,6 +137,7 @@ export default function App() {
             onSelectListing={handleSelectListing}
             buyerCity={buyerCity}
             refreshTrigger={refreshTrigger}
+            currentUser={currentUser}
           />
         )}
 
@@ -145,6 +182,24 @@ export default function App() {
             onSelectBusiness={(name) => setSelectedBusinessName(name)}
             onSelectListing={handleSelectListing}
             refreshTrigger={refreshTrigger}
+          />
+        )}
+
+        {currentTab === 'login' && (
+          <LoginPage
+            onLoginSuccess={handleLoginSuccess}
+            onCancel={() => setCurrentTab('marketplace')}
+          />
+        )}
+
+        {currentTab === 'profile' && (
+          <ProfilePage
+            currentUser={currentUser}
+            onSelectListing={handleSelectListing}
+            onPostNew={() => setCurrentTab('sell')}
+            onLogout={handleLogout}
+            refreshTrigger={refreshTrigger}
+            onListingUpdated={handleListingUpdated}
           />
         )}
       </div>

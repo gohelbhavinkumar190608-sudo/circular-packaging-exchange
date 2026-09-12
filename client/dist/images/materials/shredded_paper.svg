@@ -1,0 +1,99 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans', Inter, -apple-system, sans-serif">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </radialGradient>
+
+    <radialGradient id="floor-shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#1e293b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="shred-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.22"/>
+    </filter>
+
+    <!-- Colors of Kraft Paper Shreds -->
+    <linearGradient id="kraft-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b38249"/>
+      <stop offset="100%" stop-color="#785526"/>
+    </linearGradient>
+
+    <linearGradient id="kraft-mid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a36a"/>
+      <stop offset="100%" stop-color="#946532"/>
+    </linearGradient>
+
+    <linearGradient id="kraft-light" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d6ae"/>
+      <stop offset="100%" stop-color="#c9975c"/>
+    </linearGradient>
+
+    <linearGradient id="white-shred" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Floor Shadow -->
+  <ellipse cx="400" cy="510" rx="290" ry="38" fill="url(#floor-shadow)"/>
+
+  <!-- Shredded Paper Mound -->
+  <g filter="url(#shred-shadow)">
+    <!-- Base Mound Fill Shape -->
+    <path d="M190 480 Q160 410 230 350 Q280 250 380 230 Q460 210 520 250 Q610 280 620 370 Q650 430 600 480 Q500 520 400 515 Q290 520 190 480 Z" fill="#8a6132" opacity="0.35"/>
+
+    <!-- Dark Underlayer Crinkle Strips -->
+    <g stroke="url(#kraft-dark)" stroke-width="8" stroke-linecap="round" fill="none">
+      <path d="M210 460 Q240 430 260 450 T310 440 T360 460 T410 430 T460 470 T520 440 T570 470"/>
+      <path d="M230 420 Q260 380 290 410 T350 390 T400 420 T470 380 T530 410 T580 390"/>
+      <path d="M260 360 Q300 330 330 360 T390 340 T440 370 T500 330 T550 360"/>
+      <path d="M300 300 Q340 260 380 290 T430 270 T480 300 T530 280"/>
+      <path d="M340 240 Q380 220 410 250 T460 230 T500 260"/>
+    </g>
+
+    <!-- Mid Layer Kraft Zig-Zag Crinkle Strips -->
+    <g stroke="url(#kraft-mid)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M220 470 L240 440 L265 470 L290 435 L320 465 L350 430 L380 470 L415 435 L445 465 L480 430 L510 465 L540 435 L570 470"/>
+      <path d="M200 430 L230 400 L255 430 L285 395 L315 425 L350 390 L385 430 L420 395 L455 425 L490 390 L525 425 L560 395 L590 430"/>
+      <path d="M240 380 L270 350 L300 380 L330 345 L365 375 L400 340 L435 380 L470 345 L505 375 L540 345 L570 380"/>
+      <path d="M270 320 L300 290 L335 325 L370 285 L405 320 L440 285 L475 320 L510 285 L545 320"/>
+      <path d="M310 270 L345 240 L380 275 L415 235 L450 270 L485 235 L520 270"/>
+      <path d="M350 225 L385 195 L420 230 L455 195 L490 225"/>
+    </g>
+
+    <!-- Top Highlight Crinkle Paper Strands (Volumetric Curves & Loops) -->
+    <g stroke="url(#kraft-light)" stroke-width="7" stroke-linecap="round" fill="none">
+      <path d="M230 460 C250 420 270 490 300 450 C330 410 360 480 390 440 C420 400 450 470 480 430 C510 390 540 460 570 420"/>
+      <path d="M260 400 C280 360 310 430 340 380 C370 340 400 410 430 370 C460 330 490 400 520 360 C550 320 570 390 585 360"/>
+      <path d="M290 340 C320 300 340 370 370 320 C400 280 430 350 460 310 C490 270 520 340 550 300"/>
+      <path d="M330 280 C360 240 380 310 410 260 C440 220 470 290 500 250"/>
+      <path d="M370 230 C390 190 420 250 440 210 C460 170 480 240 510 200"/>
+
+      <!-- Stray Curled Strands Falling off the Mound -->
+      <path d="M190 470 Q160 480 180 505 Q210 515 240 495" stroke-width="6"/>
+      <path d="M570 470 Q620 480 600 505 Q580 520 540 500" stroke-width="6"/>
+      <path d="M350 495 Q380 525 430 520 Q470 515 450 490" stroke-width="6"/>
+    </g>
+
+    <!-- Premium White Shred Interspersed Accents -->
+    <g stroke="url(#white-shred)" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.8">
+      <path d="M280 440 L300 415 L320 440 L345 410 L370 440"/>
+      <path d="M420 440 L445 410 L470 440 L495 410 L520 440"/>
+      <path d="M340 350 L365 320 L390 350 L415 320 L440 350"/>
+      <path d="M380 270 L405 240 L430 270 L455 240 L480 270"/>
+    </g>
+
+    <!-- Specification Badge -->
+    <g transform="translate(325, 435)">
+      <rect x="0" y="0" width="150" height="32" rx="7" fill="#ffffff" opacity="0.95" stroke="#d4a36a" stroke-width="1.5"/>
+      <text x="75" y="21" font-size="12" font-weight="900" fill="#78350f" text-anchor="middle" letter-spacing="1">100% RECYCLED KRAFT</text>
+    </g>
+  </g>
+</svg>

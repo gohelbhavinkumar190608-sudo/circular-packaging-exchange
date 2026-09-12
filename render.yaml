@@ -1,0 +1,13 @@
+﻿services:
+  - type: web
+    name: circular-packaging-exchange
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && cd client && npm install && npm run build
+    startCommand: node server/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000

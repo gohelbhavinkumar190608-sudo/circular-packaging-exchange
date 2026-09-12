@@ -19,7 +19,8 @@ import { CONDITIONS, CITIES } from '../data/constants';
 export default function MarketplacePage({ 
   onSelectListing, 
   buyerCity, 
-  refreshTrigger 
+  refreshTrigger,
+  currentUser 
 }) {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -444,6 +445,7 @@ export default function MarketplacePage({
                   listing={item}
                   onSelect={onSelectListing}
                   viewMode={viewMode}
+                  currentUser={currentUser}
                 />
               ))}
             </div>

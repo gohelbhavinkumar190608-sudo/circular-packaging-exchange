@@ -1,0 +1,153 @@
+[
+  {
+    "id": "acc_1",
+    "name": "Sunrise Logistics Pvt Ltd",
+    "type": "Manufacturer",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "email": "sunrise.logistics.pvt.ltd@gmail.com",
+    "roleBadge": "Seller & Manufacturer",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "isDemo": true
+  },
+  {
+    "id": "acc_2",
+    "name": "Krishna Paper Mills",
+    "type": "Recycler",
+    "city": "Ahmedabad",
+    "state": "Gujarat",
+    "email": "krishna.paper.mills@business.co.in",
+    "roleBadge": "Industrial Recycler",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "isDemo": true
+  },
+  {
+    "id": "acc_3",
+    "name": "EcoBox Solutions",
+    "type": "Distributor",
+    "city": "Surat",
+    "state": "Gujarat",
+    "email": "ecobox.solutions@business.co.in",
+    "roleBadge": "Packaging Distributor",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "isDemo": true
+  },
+  {
+    "id": "acc_4",
+    "name": "Bharat Pallet Works",
+    "type": "Manufacturer",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "email": "bharat.pallet.works@business.co.in",
+    "roleBadge": "Pallet Manufacturer",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "isDemo": true
+  },
+  {
+    "id": "acc_5",
+    "name": "GreenPack Industries",
+    "type": "Recycler",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "email": "greenpack.industries@business.co.in",
+    "roleBadge": "Circular Recycler",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f",
+    "isDemo": true
+  },
+  {
+    "id": "acc_62472",
+    "name": "Apex Packaging Corporation",
+    "type": "Manufacturer",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "email": "contact@apexpackaging.in",
+    "roleBadge": "Manufacturer Enterprise",
+    "passwordHash": "11891226b2de8d77540fe808f94747c231b8ad9fa16b6e8c8765ea6b6dccabc0",
+    "isDemo": false,
+    "createdAt": "2026-09-12T09:41:02.472Z"
+  },
+  {
+    "id": "acc_04769",
+    "name": "abc",
+    "type": "Manufacturer",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "email": "bhavin@gmail.com",
+    "roleBadge": "Manufacturer Enterprise",
+    "passwordHash": "f7129d17df277eaee6a87bfa80fbc9fdaa5153e4d6176a04bac14ea80812ee39",
+    "isDemo": false,
+    "createdAt": "2026-09-12T09:43:24.769Z"
+  },
+  {
+    "id": "acc_68681",
+    "name": "xyz",
+    "type": "Manufacturer",
+    "city": "Ahmedabad",
+    "state": "Gujarat",
+    "email": "xyz@gmail.com",
+    "roleBadge": "Manufacturer Enterprise",
+    "passwordHash": "e5857b335afdf35ca81a110bc81f38682f8a89892cc597f5398dfef82d42b513",
+    "isDemo": false,
+    "createdAt": "2026-09-12T10:02:48.681Z"
+  },
+  {
+    "id": "acc_00233",
+    "name": "MIHIR",
+    "type": "Manufacturer",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "email": "pathakjimihir1@gmail.com",
+    "roleBadge": "Manufacturer Enterprise",
+    "passwordHash": "10611e903f0668b45c9ef8b24f83eca8c43e622422d2ab10c3571cd2966954e9",
+    "isDemo": false,
+    "createdAt": "2026-09-12T10:03:20.233Z"
+  },
+  {
+    "id": "acc_07629",
+    "name": "apolo",
+    "type": "Manufacturer",
+    "city": "Delhi",
+    "state": "Delhi",
+    "email": "xyzyuyuuy@gmail.com",
+    "roleBadge": "Manufacturer Enterprise",
+    "passwordHash": "a4a943e925768ec2082d7c332b805fb245216a091d359cc6a5b6dd40e1250f05",
+    "isDemo": false,
+    "createdAt": "2026-09-12T10:03:27.629Z"
+  },
+  {
+    "id": "acc_25930",
+    "name": "aa",
+    "type": "Manufacturer",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "email": "abc@gmail.com",
+    "roleBadge": "Manufacturer Enterprise",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "isDemo": false,
+    "createdAt": "2026-09-12T10:17:05.930Z"
+  },
+  {
+    "id": "acc_69222",
+    "name": "apple",
+    "type": "Manufacturer",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "email": "kp@2007.gmail.com",
+    "roleBadge": "Manufacturer Enterprise",
+    "passwordHash": "d363eeffba52a80de113db76867421c86c3d7168c060288e23f80020160f75fc",
+    "isDemo": false,
+    "createdAt": "2026-09-12T10:26:09.222Z"
+  },
+  {
+    "id": "acc_22607",
+    "name": "Saurabh",
+    "type": "Manufacturer",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "email": "ac12@gmail.com",
+    "roleBadge": "Manufacturer Enterprise",
+    "passwordHash": "10611e903f0668b45c9ef8b24f83eca8c43e622422d2ab10c3571cd2966954e9",
+    "isDemo": false,
+    "createdAt": "2026-09-12T10:53:42.608Z"
+  }
+]

@@ -1,0 +1,103 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans', Inter, -apple-system, sans-serif">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </radialGradient>
+
+    <radialGradient id="floor-shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#1e293b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Kraft Tube Cylinder Gradient -->
+    <linearGradient id="kraft-cylinder" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d4a36a"/>
+      <stop offset="35%" stop-color="#b38249"/>
+      <stop offset="75%" stop-color="#8a6132"/>
+      <stop offset="100%" stop-color="#5c3f1e"/>
+    </linearGradient>
+
+    <!-- Core Rim / Inside Depth -->
+    <linearGradient id="core-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e5c29b"/>
+      <stop offset="100%" stop-color="#946532"/>
+    </linearGradient>
+
+    <filter id="tube-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="20" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Floor Contact Shadow -->
+  <ellipse cx="400" cy="510" rx="300" ry="38" fill="url(#floor-shadow)"/>
+
+  <!-- Paper Tubes Group -->
+  <g filter="url(#tube-shadow)">
+    <!-- Tube 1 (Background Larger Diameter Core) -->
+    <g transform="translate(180, 220) rotate(18)">
+      <!-- Main Cylinder -->
+      <rect x="0" y="0" width="380" height="110" rx="8" fill="url(#kraft-cylinder)" stroke="#8a6132" stroke-width="2"/>
+      
+      <!-- Spiral Wound Seams -->
+      <g stroke="#5c3f1e" stroke-width="3" opacity="0.45">
+        <line x1="40" y1="0" x2="110" y2="110"/>
+        <line x1="110" y1="0" x2="180" y2="110"/>
+        <line x1="180" y1="0" x2="250" y2="110"/>
+        <line x1="250" y1="0" x2="320" y2="110"/>
+      </g>
+
+      <!-- Left Circular Core Opening -->
+      <ellipse cx="0" cy="55" rx="26" ry="55" fill="url(#core-rim)" stroke="#6e4920" stroke-width="2"/>
+      <ellipse cx="0" cy="55" rx="18" ry="40" fill="#2d1c0b"/>
+
+      <!-- Right Circular Closed End / Plug -->
+      <ellipse cx="380" cy="55" rx="26" ry="55" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    </g>
+
+    <!-- Tube 2 (Foreground Standing and Slanted Tubes) -->
+    <g transform="translate(230, 280) rotate(-10)">
+      <!-- Cylinder -->
+      <rect x="0" y="0" width="420" height="85" rx="6" fill="url(#kraft-cylinder)" stroke="#785526" stroke-width="2"/>
+
+      <!-- Distinct Spiral Wound Wrapping Tape Lines -->
+      <g stroke="#4f3314" stroke-width="2.5" opacity="0.5">
+        <line x1="50" y1="0" x2="105" y2="85"/>
+        <line x1="110" y1="0" x2="165" y2="85"/>
+        <line x1="170" y1="0" x2="225" y2="85"/>
+        <line x1="230" y1="0" x2="285" y2="85"/>
+        <line x1="290" y1="0" x2="345" y2="85"/>
+        <line x1="350" y1="0" x2="405" y2="85"/>
+      </g>
+
+      <!-- Left Core Opening Facing Viewer -->
+      <ellipse cx="0" cy="42" rx="22" ry="42" fill="url(#core-rim)" stroke="#5c3f1e" stroke-width="2"/>
+      <!-- Inner Hollow Core (Dark Void) -->
+      <ellipse cx="0" cy="42" rx="14" ry="28" fill="#1c1106"/>
+
+      <!-- Right End White Plastic Plug Cap -->
+      <ellipse cx="420" cy="42" rx="22" ry="42" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
+      <ellipse cx="423" cy="42" rx="12" ry="24" fill="#cbd5e1"/>
+
+      <!-- Label Band -->
+      <g transform="translate(140, 0)">
+        <rect x="0" y="0" width="90" height="85" fill="#ffffff" fill-opacity="0.88"/>
+        <text x="45" y="40" font-size="11" font-weight="900" fill="#78350f" text-anchor="middle" letter-spacing="0.5">SPIRAL TUBE</text>
+        <text x="45" y="55" font-size="9" font-weight="800" fill="#92400e" text-anchor="middle">76mm ID • HEAVY</text>
+      </g>
+    </g>
+
+    <!-- Upright Standing Short Tube Core -->
+    <g transform="translate(560, 360)">
+      <rect x="0" y="0" width="80" height="130" fill="url(#kraft-cylinder)" stroke="#785526" stroke-width="1.5"/>
+      <ellipse cx="40" cy="130" rx="40" ry="14" fill="#5c3f1e"/>
+      <ellipse cx="40" cy="0" rx="40" ry="14" fill="url(#core-rim)" stroke="#6e4920"/>
+      <ellipse cx="40" cy="0" rx="28" ry="10" fill="#2d1c0b"/>
+    </g>
+  </g>
+</svg>

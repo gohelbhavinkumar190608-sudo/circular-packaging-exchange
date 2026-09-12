@@ -84,6 +84,17 @@ export default function MatchingEnginePage({
 
   const handleQuickClaim = async (item, e) => {
     e.stopPropagation();
+    const isOwn = Boolean(
+      currentUser && item && (
+        (currentUser.name && item.business_name && currentUser.name.trim().toLowerCase() === item.business_name.trim().toLowerCase()) ||
+        (currentUser.email && item.contact_email && currentUser.email.trim().toLowerCase() === item.contact_email.trim().toLowerCase())
+      )
+    );
+    if (isOwn) {
+      alert("Self-purchase prohibited: You cannot claim or buy your own surplus product.");
+      return;
+    }
+
     setClaimingId(item.listing_id);
     try {
       const res = await fetch(`/api/listings/${item.listing_id}/status`, {
@@ -91,7 +102,8 @@ export default function MatchingEnginePage({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           status: 'reserved',
-          claimed_by: currentUser.name || "Smart Match Buyer"
+          claimed_by: currentUser.name || "Smart Match Buyer",
+          buyer_email: currentUser.email
         })
       });
       const data = await res.json();
@@ -102,6 +114,8 @@ export default function MatchingEnginePage({
           )
         );
         if (onListingUpdated) onListingUpdated();
+      } else {
+        alert(data.error || "Failed to claim lot");
       }
     } catch (err) {
       console.error("Error claiming matched lot:", err);
@@ -431,14 +445,25 @@ export default function MatchingEnginePage({
 
                     <div className="flex items-center gap-2">
                       {item.status === 'available' ? (
-                        <button
-                          onClick={(e) => handleQuickClaim(item, e)}
-                          disabled={claimingId === item.listing_id}
-                          className="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-4 py-2 rounded-xl shadow transition-colors flex items-center gap-1.5 disabled:opacity-50"
-                        >
-                          <CheckCircle2 className="w-3.5 h-3.5" />
-                          <span>{claimingId === item.listing_id ? 'Reserving...' : '1-Click Claim'}</span>
-                        </button>
+                        Boolean(
+                          currentUser && (
+                            (currentUser.name && item.business_name && currentUser.name.trim().toLowerCase() === item.business_name.trim().toLowerCase()) ||
+                            (currentUser.email && item.contact_email && currentUser.email.trim().toLowerCase() === item.contact_email.trim().toLowerCase())
+                          )
+                        ) ? (
+                          <span className="text-xs font-bold text-amber-800 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200" title="You are the seller of this product">
+                            Your Product
+                          </span>
+                        ) : (
+                          <button
+                            onClick={(e) => handleQuickClaim(item, e)}
+                            disabled={claimingId === item.listing_id}
+                            className="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-4 py-2 rounded-xl shadow transition-colors flex items-center gap-1.5 disabled:opacity-50"
+                          >
+                            <CheckCircle2 className="w-3.5 h-3.5" />
+                            <span>{claimingId === item.listing_id ? 'Reserving...' : '1-Click Claim'}</span>
+                          </button>
+                        )
                       ) : (
                         <span className="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-200">
                           {item.status === 'reserved' ? 'Reserved' : 'Sold'}

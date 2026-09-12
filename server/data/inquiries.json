@@ -1,0 +1,18 @@
+[
+  {
+    "inquiry_id": "INQ1789209931462",
+    "listing_id": "LST0052",
+    "seller_name": "xyz",
+    "seller_email": "xyz@gmail.com",
+    "buyer_name": "Sunrise Logistics Pvt Ltd",
+    "buyer_email": "sunrise.logistics.pvt.ltd@gmail.com",
+    "buyer_address": "Plot 42, MIDC Industrial Area, Andheri East, Mumbai 400093",
+    "buyer_city": "Mumbai",
+    "requested_quantity": 5,
+    "unit": "tons",
+    "offered_total_inr": 25000,
+    "message": "Formal inquiry regarding batch testing certificate and dock pickup timing for 5 tons.",
+    "pickup_date_proposal": "2026-09-20",
+    "created_at": "2026-09-12T10:45:31.462Z"
+  }
+]

@@ -3,7 +3,14 @@ import { MapPin, Building2, Scale, ArrowRight, ShieldCheck } from 'lucide-react'
 import StatusBadge from './StatusBadge';
 import { CATEGORY_DETAILS } from '../data/constants';
 
-export default function ListingCard({ listing, onSelect, viewMode = 'grid' }) {
+export default function ListingCard({ listing, onSelect, viewMode = 'grid', currentUser }) {
+  const isOwner = Boolean(
+    currentUser && (
+      (currentUser.name && listing.business_name && currentUser.name.trim().toLowerCase() === listing.business_name.trim().toLowerCase()) ||
+      (currentUser.email && listing.contact_email && currentUser.email.trim().toLowerCase() === listing.contact_email.trim().toLowerCase())
+    )
+  );
+
   const categoryConfig = CATEGORY_DETAILS[listing.category] || {
     color: 'bg-gray-100 text-gray-800 border-gray-300',
     defaultImage: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80'
@@ -48,6 +55,11 @@ export default function ListingCard({ listing, onSelect, viewMode = 'grid' }) {
             <div className="flex items-center gap-2">
               <span className="text-xs text-slate-400 font-mono font-medium">{listing.listing_id}</span>
               <StatusBadge status={listing.status} />
+              {isOwner && (
+                <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-md bg-amber-500 text-white shadow-xs">
+                  Your Product
+                </span>
+              )}
               <span className="text-[11px] px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-medium">
                 {listing.condition}
               </span>
@@ -119,8 +131,13 @@ export default function ListingCard({ listing, onSelect, viewMode = 'grid' }) {
           </span>
         </div>
 
-        {/* Status Badge */}
-        <div className="absolute top-2.5 right-2.5">
+        {/* Status Badge & Owner Pill */}
+        <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5">
+          {isOwner && (
+            <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-md bg-amber-500 text-white shadow-xs">
+              Your Product
+            </span>
+          )}
           <StatusBadge status={listing.status} />
         </div>
 

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "server": "node server/server.js",
-    "build": "npm.cmd --prefix client run build",
+    "build": "cd client && npm install && npm run build",
     "dev": "node dev-runner.js"
   },
   "dependencies": {

@@ -8,7 +8,11 @@ import {
   Building2, 
   Store, 
   UserCheck, 
-  ChevronDown 
+  ChevronDown,
+  LogIn,
+  LogOut,
+  User,
+  Package
 } from 'lucide-react';
 import { CITIES, DEMO_ACCOUNTS } from '../data/constants';
 
@@ -18,7 +22,9 @@ export default function Navbar({
   buyerCity, 
   setBuyerCity, 
   currentUser, 
-  setCurrentUser 
+  setCurrentUser,
+  isLoggedIn = false,
+  onLogout
 }) {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
@@ -53,6 +59,35 @@ export default function Navbar({
                 ))}
               </select>
             </div>
+
+            {isLoggedIn ? (
+              <div className="flex items-center gap-2 text-xs">
+                <button
+                  onClick={() => setCurrentTab('profile')}
+                  className="text-[11px] text-emerald-400 hover:text-emerald-300 font-bold underline cursor-pointer flex items-center gap-1"
+                >
+                  <Package className="w-3 h-3" />
+                  <span>See My Products</span>
+                </button>
+                <span className="text-slate-500">|</span>
+                <button
+                  onClick={onLogout}
+                  className="text-[11px] text-slate-400 hover:text-red-400 font-medium cursor-pointer flex items-center gap-0.5"
+                  title="Sign out of enterprise account"
+                >
+                  <LogOut className="w-3 h-3" />
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setCurrentTab('login')}
+                className="text-[11px] text-emerald-400 hover:text-emerald-300 font-bold underline ml-1 cursor-pointer flex items-center gap-1"
+              >
+                <LogIn className="w-3 h-3" />
+                <span>Login / Register</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -148,6 +183,44 @@ export default function Navbar({
               <Building2 className="w-4 h-4 text-slate-500" />
               <span>Directory</span>
             </button>
+
+            {/* Enterprise Profile / Sign In Button */}
+            {isLoggedIn ? (
+              <button
+                onClick={() => setCurrentTab('profile')}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all ${
+                  currentTab === 'profile'
+                    ? 'bg-emerald-100 border-emerald-500 text-emerald-950 shadow-sm ring-2 ring-emerald-500/20'
+                    : 'bg-emerald-50 hover:bg-emerald-100/80 border-emerald-300 text-emerald-900'
+                }`}
+                title="View your enterprise profile & see your products"
+              >
+                <div className="w-7 h-7 rounded-lg bg-emerald-700 text-white flex items-center justify-center font-black text-xs shadow-xs flex-shrink-0">
+                  {currentUser?.name ? currentUser.name.slice(0, 1).toUpperCase() : 'P'}
+                </div>
+                <div className="text-left hidden sm:block leading-tight">
+                  <span className="text-xs font-black text-slate-800 block truncate max-w-[110px]">
+                    {currentUser?.name || 'My Profile'}
+                  </span>
+                  <span className="text-[10px] text-emerald-700 font-bold block flex items-center gap-0.5">
+                    <Package className="w-2.5 h-2.5" /> See Products
+                  </span>
+                </div>
+              </button>
+            ) : (
+              <button
+                onClick={() => setCurrentTab('login')}
+                className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+                  currentTab === 'login'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                }`}
+                title="Sign in or register enterprise account"
+              >
+                <LogIn className="w-4 h-4 text-emerald-600" />
+                <span className="hidden sm:inline">Sign In</span>
+              </button>
+            )}
 
             {/* OLX-Style "+ POST SURPLUS / SELL" Button */}
             <button

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   PlusCircle, 
   Upload, 
@@ -10,9 +10,14 @@ import {
   Building2, 
   AlertCircle,
   Eye,
-  Camera
+  Camera,
+  Image as ImageIcon,
+  Check,
+  RefreshCw,
+  X,
+  FileCheck
 } from 'lucide-react';
-import { CATEGORIES, CATEGORY_DETAILS, CONDITIONS, UNITS, BUSINESS_TYPES, CITIES } from '../data/constants';
+import { CATEGORIES, CATEGORY_DETAILS, SUBTYPE_IMAGES, CONDITIONS, UNITS, BUSINESS_TYPES, CITIES } from '../data/constants';
 import ListingCard from '../components/ListingCard';
 
 export default function SellListingPage({ 
@@ -30,12 +35,13 @@ export default function SellListingPage({
   const [quantity, setQuantity] = useState(250);
   const [unit, setUnit] = useState('tons');
   const [condition, setCondition] = useState('Good - Reusable');
-  
+  const initialCityObj = CITIES.find((c) => c.city === (currentUser.city || 'Mumbai')) || CITIES[0];
   const [priceTotalInr, setPriceTotalInr] = useState(3500);
-  const [city, setCity] = useState(currentUser.city || 'Mumbai');
-  const [state, setState] = useState(currentUser.state || 'Maharashtra');
-  const [latitude, setLatitude] = useState(19.0505);
-  const [longitude, setLongitude] = useState(72.8417);
+  const [city, setCity] = useState(currentUser.city || initialCityObj.city);
+  const [state, setState] = useState(currentUser.state || initialCityObj.state);
+  const [address, setAddress] = useState(currentUser.address || initialCityObj.defaultAddress || '');
+  const [latitude, setLatitude] = useState(initialCityObj.latitude);
+  const [longitude, setLongitude] = useState(initialCityObj.longitude);
   
   const [description, setDescription] = useState(
     'High-grade double-wall corrugated shipping boxes from surplus production run. Clean, dry-stored, and structurally sound for heavy industrial freight reuse or high-yield pulp recycling.'
@@ -45,6 +51,94 @@ export default function SellListingPage({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Photo Upload State
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+  const [uploadError, setUploadError] = useState('');
+  const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [photoSourceTab, setPhotoSourceTab] = useState('upload'); // 'upload' | 'preset' | 'url'
+  const fileInputRef = useRef(null);
+
+  // File upload processing logic
+  const processUploadedFile = (file) => {
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      setUploadError('Please select a valid image file (PNG, JPG, JPEG, WEBP, or SVG).');
+      return;
+    }
+
+    if (file.size > 15 * 1024 * 1024) {
+      setUploadError('Image file exceeds 15MB limit. Please choose a smaller photo.');
+      return;
+    }
+
+    setUploadError('');
+    setIsUploadingPhoto(true);
+    setUploadSuccess(false);
+
+    const reader = new FileReader();
+    reader.onerror = () => {
+      setUploadError('Failed to read image file from disk.');
+      setIsUploadingPhoto(false);
+    };
+
+    reader.onload = async (event) => {
+      const dataUrl = event.target.result;
+      
+      // Update preview immediately with dataUrl so user sees the photo without waiting
+      setImageUrl(dataUrl);
+
+      try {
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            image: dataUrl,
+            filename: file.name
+          })
+        });
+
+        const resData = await response.json();
+        if (resData.success && resData.url) {
+          setImageUrl(resData.url);
+          setUploadSuccess(true);
+        } else {
+          // If server upload had an issue, the dataUrl remains set as fallback
+          setUploadSuccess(true);
+        }
+      } catch (err) {
+        console.warn('Direct upload endpoint error, preserving fallback:', err);
+        setUploadSuccess(true);
+      } finally {
+        setIsUploadingPhoto(false);
+      }
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      processUploadedFile(e.dataTransfer.files[0]);
+    }
+  };
+
   // Auto-fill coordinates and state when city changes
   const handleCityChange = (newCityName) => {
     setCity(newCityName);
@@ -53,6 +147,9 @@ export default function SellListingPage({
       setState(matched.state);
       setLatitude(matched.latitude);
       setLongitude(matched.longitude);
+      if (matched.defaultAddress && (!address || address.includes("Industrial") || address.includes("GIDC") || address.includes("MIDC"))) {
+        setAddress(matched.defaultAddress);
+      }
     }
   };
 
@@ -61,11 +158,14 @@ export default function SellListingPage({
     setCategory(newCat);
     const config = CATEGORY_DETAILS[newCat];
     if (config) {
-      setImageUrl(config.defaultImage);
-      if (config.subtypes && config.subtypes.length > 0) {
-        setMaterialSubtype(config.subtypes[0]);
+      const firstSubtype = config.subtypes && config.subtypes.length > 0 ? config.subtypes[0] : '';
+      if (firstSubtype) {
+        setMaterialSubtype(firstSubtype);
+        setImageUrl(SUBTYPE_IMAGES[firstSubtype] || config.defaultImage);
+      } else {
+        setImageUrl(config.defaultImage);
       }
-      autoSuggestDescription(newCat, config.subtypes ? config.subtypes[0] : newCat, condition, quantity, unit);
+      autoSuggestDescription(newCat, firstSubtype || newCat, condition, quantity, unit);
     }
   };
 
@@ -136,6 +236,7 @@ export default function SellListingPage({
         price_total_inr: Number(priceTotalInr),
         city,
         state,
+        address,
         latitude: Number(latitude),
         longitude: Number(longitude),
         contact_email: contactEmail,
@@ -287,6 +388,9 @@ export default function SellListingPage({
                         type="button"
                         onClick={() => {
                           setMaterialSubtype(sub);
+                          if (SUBTYPE_IMAGES[sub]) {
+                            setImageUrl(SUBTYPE_IMAGES[sub]);
+                          }
                           autoSuggestDescription(category, sub, condition, quantity, unit);
                         }}
                         className={`text-[10px] px-2 py-0.5 rounded-md border font-medium transition-all ${
@@ -389,6 +493,23 @@ export default function SellListingPage({
                     Lat: {latitude.toFixed(4)}, Lng: {longitude.toFixed(4)}
                   </span>
                 </div>
+
+                <div className="sm:col-span-2">
+                  <label className="font-bold text-slate-700 block mb-1">
+                    Company Plant / Facility Address (For Accurate Freight Calculation) *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="e.g. Plot 18, GIDC Industrial Estate, Naroda, Ahmedabad, Gujarat 382330"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 font-medium text-slate-800 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                  />
+                  <span className="text-[11px] text-slate-500 block mt-1">
+                    Freight distance and transit duration will be calculated from this dispatch dock address to the buyer's delivery address.
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -414,25 +535,214 @@ export default function SellListingPage({
               />
             </div>
 
-            {/* Step 6: Photo Selector */}
-            <div className="space-y-2">
-              <label className="font-bold text-slate-700 block">Packaging Photo / Image URL</label>
-              <div className="flex gap-2">
-                <input
-                  type="url"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  placeholder="https://..."
-                  className="flex-1 bg-slate-50 border border-slate-300 rounded-xl p-2.5 font-medium text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-                />
-                <button
-                  type="button"
-                  onClick={() => setImageUrl(CATEGORY_DETAILS[category]?.defaultImage || '')}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-2 rounded-xl text-xs flex items-center gap-1"
-                >
-                  <Camera className="w-3.5 h-3.5" /> Category Default
-                </button>
+            {/* Step 6: Material Photo / Image Upload & Selector */}
+            <div className="space-y-3 pb-2">
+              <div className="flex items-center justify-between">
+                <label className="font-bold text-slate-700 block flex items-center gap-1.5">
+                  <Camera className="w-4 h-4 text-emerald-600" />
+                  <span>6. Material Photo (Upload from PC or Presets)</span>
+                </label>
+                {/* Mode Selector Tabs */}
+                <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-lg text-[11px] font-semibold">
+                  <button
+                    type="button"
+                    onClick={() => setPhotoSourceTab('upload')}
+                    className={`px-2.5 py-1 rounded-md transition-all ${
+                      photoSourceTab === 'upload'
+                        ? 'bg-white text-emerald-700 shadow-xs font-bold'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    Upload File
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPhotoSourceTab('preset')}
+                    className={`px-2.5 py-1 rounded-md transition-all ${
+                      photoSourceTab === 'preset'
+                        ? 'bg-white text-emerald-700 shadow-xs font-bold'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    Presets
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPhotoSourceTab('url')}
+                    className={`px-2.5 py-1 rounded-md transition-all ${
+                      photoSourceTab === 'url'
+                        ? 'bg-white text-emerald-700 shadow-xs font-bold'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    Custom URL
+                  </button>
+                </div>
               </div>
+
+              {/* Upload Error Banner */}
+              {uploadError && (
+                <div className="p-2.5 bg-red-50 border border-red-200 rounded-xl text-[11px] font-bold text-red-700 flex items-center gap-2">
+                  <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>{uploadError}</span>
+                </div>
+              )}
+
+              {/* Tab 1: Drag-and-Drop & Browse File Upload */}
+              {photoSourceTab === 'upload' && (
+                <div className="space-y-2">
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    accept="image/*"
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        processUploadedFile(e.target.files[0]);
+                      }
+                    }}
+                    className="hidden"
+                  />
+
+                  {/* Dropzone Container */}
+                  <div
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    onClick={() => fileInputRef.current && fileInputRef.current.click()}
+                    className={`border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all flex flex-col items-center justify-center gap-2 ${
+                      isDragging
+                        ? 'border-emerald-500 bg-emerald-50/70 scale-[1.01]'
+                        : 'border-slate-300 bg-slate-50 hover:bg-slate-100/80 hover:border-slate-400'
+                    }`}
+                  >
+                    {isUploadingPhoto ? (
+                      <div className="py-4 flex flex-col items-center gap-2">
+                        <RefreshCw className="w-7 h-7 text-emerald-600 animate-spin" />
+                        <span className="text-xs font-bold text-slate-700">Uploading photo to server storage...</span>
+                        <span className="text-[10px] text-slate-400">Saving to /uploads with automatic storage</span>
+                      </div>
+                    ) : imageUrl && (imageUrl.startsWith('/uploads/') || imageUrl.startsWith('data:image/')) ? (
+                      <div className="w-full flex items-center justify-between gap-3 p-2 bg-white rounded-xl border border-slate-200">
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={imageUrl}
+                            alt="Uploaded material"
+                            className="w-14 h-14 object-cover rounded-lg border border-slate-200 shadow-sm"
+                          />
+                          <div className="text-left space-y-0.5">
+                            <div className="flex items-center gap-1.5 text-xs font-extrabold text-emerald-700">
+                              <FileCheck className="w-4 h-4 text-emerald-600" />
+                              <span>Photo Successfully Stored</span>
+                            </div>
+                            <p className="text-[10px] text-slate-500 font-mono truncate max-w-xs">
+                              {imageUrl.startsWith('/uploads/') ? imageUrl : 'Attached photo'}
+                            </p>
+                            <span className="inline-block text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded">
+                              ✓ Ready to display on website
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 flex-shrink-0">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              fileInputRef.current && fileInputRef.current.click();
+                            }}
+                            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-lg transition-colors flex items-center gap-1"
+                          >
+                            <Upload className="w-3.5 h-3.5" />
+                            <span>Replace</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setImageUrl(CATEGORY_DETAILS[category]?.defaultImage || '');
+                              setUploadSuccess(false);
+                            }}
+                            className="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 font-bold text-xs rounded-lg transition-colors flex items-center gap-1"
+                            title="Remove uploaded photo and revert to category default"
+                          >
+                            <X className="w-3.5 h-3.5" />
+                            <span>Remove</span>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="py-3 flex flex-col items-center gap-1.5">
+                        <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center">
+                          <Upload className="w-5 h-5" />
+                        </div>
+                        <div className="text-xs font-bold text-slate-800">
+                          Click to browse or drag & drop photo here
+                        </div>
+                        <p className="text-[11px] text-slate-500">
+                          Upload your actual material photo from computer (PNG, JPG, WEBP).
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 2: Standard Presets */}
+              {photoSourceTab === 'preset' && (
+                <div className="space-y-2 bg-slate-50 border border-slate-200 p-3 rounded-2xl">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold text-slate-700">Category Catalog Images:</span>
+                    <button
+                      type="button"
+                      onClick={() => setImageUrl(CATEGORY_DETAILS[category]?.defaultImage || '')}
+                      className="text-[10px] font-bold text-emerald-700 hover:underline flex items-center gap-1"
+                    >
+                      <Camera className="w-3 h-3" /> Reset to {category} Default
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+                    {CATEGORIES.map((cat) => {
+                      const img = CATEGORY_DETAILS[cat]?.defaultImage;
+                      const isSelected = imageUrl === img;
+                      return (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => setImageUrl(img)}
+                          className={`p-1.5 rounded-xl border text-left flex items-center gap-2 transition-all ${
+                            isSelected
+                              ? 'bg-emerald-50 border-emerald-500 ring-2 ring-emerald-500/20'
+                              : 'bg-white border-slate-200 hover:border-slate-300'
+                          }`}
+                        >
+                          <img src={img} alt={cat} className="w-8 h-8 rounded-lg object-cover flex-shrink-0" />
+                          <span className="text-[10px] font-bold text-slate-800 truncate">{cat}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 3: Custom URL */}
+              {photoSourceTab === 'url' && (
+                <div className="flex gap-2">
+                  <input
+                    type="url"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    placeholder="https://images.unsplash.com/..."
+                    className="flex-1 bg-slate-50 border border-slate-300 rounded-xl p-2.5 font-medium text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setImageUrl(CATEGORY_DETAILS[category]?.defaultImage || '')}
+                    className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-2 rounded-xl text-xs flex items-center gap-1"
+                  >
+                    <Camera className="w-3.5 h-3.5" /> Category Default
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Submit Actions */}

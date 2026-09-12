@@ -1,5 +1,235 @@
 [
   {
+    "listing_id": "LST0056",
+    "business_name": "Saurabh",
+    "business_type": "Manufacturer",
+    "category": "Cardboard",
+    "material_subtype": "Double-wall corrugated boxes",
+    "quantity": 1,
+    "unit": "units",
+    "condition": "Good - Reusable",
+    "price_total_inr": 1,
+    "price_per_unit_inr": 1,
+    "city": "Ghaziabad",
+    "state": "Uttar Pradesh",
+    "address": "Site IV Industrial Area, Sahibabad, Ghaziabad, UP 201010",
+    "latitude": 28.6692,
+    "longitude": 77.4538,
+    "status": "sold",
+    "date_listed": "2026-09-12",
+    "contact_email": "ac12@gmail.com",
+    "description": "High-grade double-wall corrugated shipping boxes from surplus production run. Clean, dry-stored, and structurally sound for heavy industrial freight reuse or high-yield pulp recycling.",
+    "image_url": "/images/materials/corrugated_boxes.jpg",
+    "claimed_by": "MIHIR",
+    "claimed_at": "2026-09-12T10:57:38.816Z",
+    "sold_at": "2026-09-12T10:57:43.862Z",
+    "buyer_email": "pathakjimihir1@gmail.com",
+    "buyer_address": "Manesar Industrial Township, Gurugram 122051"
+  },
+  {
+    "listing_id": "LST0055",
+    "business_name": "Everest Foods Packaging",
+    "business_type": "Recycler",
+    "category": "Foam/Packaging",
+    "material_subtype": "Foam packaging inserts",
+    "quantity": 150,
+    "unit": "pallets",
+    "condition": "Scrap Grade",
+    "price_total_inr": 1083,
+    "price_per_unit_inr": 7.22,
+    "city": "Surat",
+    "state": "Gujarat",
+    "latitude": 21.1922,
+    "longitude": 72.8111,
+    "status": "available",
+    "date_listed": "2026-08-27",
+    "contact_email": "everest.foods.packaging@packagingco.in",
+    "description": "Foam packaging inserts available in like new condition, ideal for reuse or recycling. (Reserved lot of 150 pallets)",
+    "image_url": "/images/materials/foam_inserts.svg",
+    "claimed_by": null,
+    "claimed_at": null,
+    "sold_at": null,
+    "buyer_email": "sunrise.logistics.pvt.ltd@gmail.com",
+    "buyer_address": "Plot 42, MIDC Industrial Area, Andheri East, Mumbai 400093"
+  },
+  {
+    "listing_id": "LST0054",
+    "business_name": "Gujarat Kraft Papers Ltd",
+    "business_type": "Manufacturer",
+    "category": "Cardboard",
+    "material_subtype": "Heavy Duty Cardboard Tubes",
+    "quantity": 300,
+    "unit": "kg",
+    "condition": "New/Unused",
+    "price_total_inr": 7500,
+    "price_per_unit_inr": 25,
+    "city": "Vadodara",
+    "state": "Gujarat",
+    "address": "Makarpura GIDC Estate, Vadodara, Gujarat 390010",
+    "latitude": 22.3046,
+    "longitude": 73.1426,
+    "status": "reserved",
+    "date_listed": "2026-09-12",
+    "contact_email": "gujarat.kraft@papers.com",
+    "description": "Batch of heavy duty industrial winding tubes. (Reserved lot of 300 kg)",
+    "image_url": "/images/materials/corrugated_boxes.jpg",
+    "claimed_by": "Mumbai Packaging Hub",
+    "claimed_at": "2026-09-12T10:45:31.481Z",
+    "sold_at": null,
+    "buyer_email": "mumbai.packaging@buyer.com",
+    "buyer_address": "Plot 15, TTC Industrial Area, Mahape, Navi Mumbai"
+  },
+  {
+    "listing_id": "LST0053",
+    "business_name": "Gujarat Kraft Papers Ltd",
+    "business_type": "Manufacturer",
+    "category": "Cardboard",
+    "material_subtype": "Heavy Duty Cardboard Tubes",
+    "quantity": 700,
+    "unit": "kg",
+    "condition": "New/Unused",
+    "price_total_inr": 17500,
+    "price_per_unit_inr": 25,
+    "city": "Vadodara",
+    "state": "Gujarat",
+    "address": "Makarpura GIDC Estate, Vadodara, Gujarat 390010",
+    "latitude": 22.3046,
+    "longitude": 73.1426,
+    "status": "available",
+    "date_listed": "2026-09-12",
+    "contact_email": "gujarat.kraft@papers.com",
+    "description": "Batch of heavy duty industrial winding tubes.",
+    "image_url": "/images/materials/corrugated_boxes.jpg",
+    "claimed_by": null,
+    "claimed_at": null,
+    "sold_at": null,
+    "buyer_email": "sunrise.logistics.pvt.ltd@gmail.com",
+    "buyer_address": "Vapi GIDC Industrial Township, Gujarat 396195"
+  },
+  {
+    "listing_id": "LST0052",
+    "business_name": "xyz",
+    "business_type": "Retailer",
+    "category": "Metal",
+    "material_subtype": "Steel pipes",
+    "quantity": 1,
+    "unit": "tons",
+    "condition": "New/Unused",
+    "price_total_inr": 5000,
+    "price_per_unit_inr": 5000,
+    "city": "Ahmedabad",
+    "state": "Gujarat",
+    "address": "GIDC Industrial Estate, Naroda, Ahmedabad, Gujarat 382330",
+    "latitude": 23.0386,
+    "longitude": 72.5987,
+    "status": "available",
+    "date_listed": "2026-09-12",
+    "contact_email": "xyz@gmail.com",
+    "description": "High-volume lot of Steel pipes (250 tons). Certified clean and dry-stored industrial surplus. Save significant costs vs virgin market tariffs while advancing ESG diversion goals.",
+    "image_url": "/uploads/download_1789208820120_5c59a0c4c681.jpg",
+    "claimed_by": null,
+    "claimed_at": null,
+    "sold_at": null,
+    "buyer_email": "sunrise.logistics.pvt.ltd@gmail.com",
+    "buyer_address": "Plot 42, MIDC Industrial Area, Andheri East, Mumbai 400093"
+  },
+  {
+    "listing_id": "LST0051",
+    "business_name": "apple",
+    "business_type": "Manufacturer",
+    "category": "Cardboard",
+    "material_subtype": "Double-wall corrugated boxes",
+    "quantity": 250,
+    "unit": "tons",
+    "condition": "Good - Reusable",
+    "price_total_inr": 10,
+    "price_per_unit_inr": 0.04,
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "latitude": 19.0505,
+    "longitude": 72.8417,
+    "status": "sold",
+    "date_listed": "2026-09-12",
+    "contact_email": "kp@2007.gmail.com",
+    "description": "High-grade double-wall corrugated shipping boxes from surplus production run. Clean, dry-stored, and structurally sound for heavy industrial freight reuse or high-yield pulp recycling.",
+    "image_url": "/uploads/Screenshot_2026-05-1_1789208790851_8a095503857d.png",
+    "claimed_by": "MIHIR",
+    "claimed_at": "2026-09-12T10:27:14.559Z",
+    "sold_at": "2026-09-12T10:27:37.696Z"
+  },
+  {
+    "listing_id": "LST0050",
+    "business_name": "MIHIR",
+    "business_type": "Manufacturer",
+    "category": "Cardboard",
+    "material_subtype": "Double-wall corrugated boxes",
+    "quantity": 250,
+    "unit": "tons",
+    "condition": "Good - Reusable",
+    "price_total_inr": 3500,
+    "price_per_unit_inr": 14,
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "latitude": 19.0505,
+    "longitude": 72.8417,
+    "status": "reserved",
+    "date_listed": "2026-09-12",
+    "contact_email": "pathakjimihir1@gmail.com",
+    "description": "High-grade double-wall corrugated shipping boxes from surplus production run. Clean, dry-stored, and structurally sound for heavy industrial freight reuse or high-yield pulp recycling.",
+    "image_url": "/images/materials/corrugated_boxes.jpg",
+    "claimed_by": "MIHIR",
+    "claimed_at": "2026-09-12T10:11:35.242Z",
+    "sold_at": null
+  },
+  {
+    "listing_id": "LST0048",
+    "business_name": "MIHIR",
+    "business_type": "Manufacturer",
+    "category": "Cardboard",
+    "material_subtype": "Double-wall corrugated boxes",
+    "quantity": 250,
+    "unit": "tons",
+    "condition": "Good - Reusable",
+    "price_total_inr": 3500,
+    "price_per_unit_inr": 14,
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "latitude": 19.0505,
+    "longitude": 72.8417,
+    "status": "sold",
+    "date_listed": "2026-09-12",
+    "contact_email": "pathakjimihir1@gmail.com",
+    "description": "High-grade double-wall corrugated shipping boxes from surplus production run. Clean, dry-stored, and structurally sound for heavy industrial freight reuse or high-yield pulp recycling.",
+    "image_url": "/images/materials/corrugated_boxes.jpg",
+    "claimed_by": "xyz",
+    "claimed_at": "2026-09-12T10:32:50.041Z",
+    "sold_at": "2026-09-12T10:32:51.774Z"
+  },
+  {
+    "listing_id": "LST0046",
+    "business_name": "MIHIR",
+    "business_type": "Manufacturer",
+    "category": "Cardboard",
+    "material_subtype": "Double-wall corrugated boxes",
+    "quantity": 250,
+    "unit": "tons",
+    "condition": "Good - Reusable",
+    "price_total_inr": 3500,
+    "price_per_unit_inr": 14,
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "latitude": 19.0505,
+    "longitude": 72.8417,
+    "status": "sold",
+    "date_listed": "2026-09-12",
+    "contact_email": "pathakjimihir1@gmail.com",
+    "description": "High-grade double-wall corrugated shipping boxes from surplus production run. Clean, dry-stored, and structurally sound for heavy industrial freight reuse or high-yield pulp recycling.",
+    "image_url": "/uploads/Screenshot_2026-09-1_1789207556277_e69d76e4460b.png",
+    "claimed_by": "MIHIR",
+    "claimed_at": "2026-09-12T10:08:40.951Z",
+    "sold_at": "2026-09-12T10:08:42.678Z"
+  },
+  {
     "listing_id": "LST0001",
     "business_name": "Sunrise Logistics Pvt Ltd",
     "business_type": "Manufacturer",
@@ -18,7 +248,10 @@
     "date_listed": "2026-08-15",
     "contact_email": "sunrise.logistics.pvt.ltd@gmail.com",
     "description": "PET bottles/scrap available in scrap grade condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/pet_bottles.jpg",
+    "claimed_by": null,
+    "claimed_at": null,
+    "sold_at": null
   },
   {
     "listing_id": "LST0002",
@@ -39,7 +272,7 @@
     "date_listed": "2026-08-22",
     "contact_email": "adani.retail.distribution.hub@gmail.com",
     "description": "Tin containers available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/tin_containers.jpg"
   },
   {
     "listing_id": "LST0003",
@@ -56,11 +289,14 @@
     "state": "Maharashtra",
     "latitude": 18.5551,
     "longitude": 73.8671,
-    "status": "available",
+    "status": "sold",
     "date_listed": "2026-09-10",
     "contact_email": "kisan.agro.packaging@outlook.com",
     "description": "Kraft paper rolls available in scrap grade condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/kraft_paper_rolls.jpg",
+    "claimed_by": "MIHIR",
+    "claimed_at": "2026-09-12T10:28:15.201Z",
+    "sold_at": "2026-09-12T10:28:20.132Z"
   },
   {
     "listing_id": "LST0004",
@@ -81,7 +317,7 @@
     "date_listed": "2026-08-24",
     "contact_email": "krishna.paper.mills@business.co.in",
     "description": "Steel drums available in good - reusable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/steel_drums.jpg"
   },
   {
     "listing_id": "LST0005",
@@ -102,7 +338,7 @@
     "date_listed": "2026-08-18",
     "contact_email": "blue.ocean.plastics@business.co.in",
     "description": "Styrofoam (EPS) sheets available in good - reusable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/styrofoam_sheets.jpg"
   },
   {
     "listing_id": "LST0006",
@@ -123,7 +359,7 @@
     "date_listed": "2026-08-26",
     "contact_email": "nirma.chemicals.packaging@packagingco.in",
     "description": "Double-wall corrugated boxes available in like new condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/corrugated_boxes.jpg"
   },
   {
     "listing_id": "LST0007",
@@ -144,7 +380,7 @@
     "date_listed": "2026-08-04",
     "contact_email": "bharat.pallet.works@gmail.com",
     "description": "Glass bottles available in like new condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/glass_bottles.jpg"
   },
   {
     "listing_id": "LST0008",
@@ -165,7 +401,7 @@
     "date_listed": "2026-09-04",
     "contact_email": "blue.ocean.plastics@outlook.com",
     "description": "Plywood offcuts available in good - reusable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/plywood_offcuts.jpg"
   },
   {
     "listing_id": "LST0009",
@@ -186,7 +422,7 @@
     "date_listed": "2026-09-02",
     "contact_email": "zenith.auto.parts.mfg@business.co.in",
     "description": "LDPE film/wrap available in like new condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1597484661643-2f5fef640dd1?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/ldpe_film_wrap.svg"
   },
   {
     "listing_id": "LST0010",
@@ -207,7 +443,7 @@
     "date_listed": "2026-08-20",
     "contact_email": "greenpack.industries@business.co.in",
     "description": "Styrofoam (EPS) sheets available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/styrofoam_sheets.jpg"
   },
   {
     "listing_id": "LST0011",
@@ -228,7 +464,10 @@
     "date_listed": "2026-09-08",
     "contact_email": "blue.ocean.plastics@packagingco.in",
     "description": "Steel drums available in like new condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/steel_drums.jpg",
+    "claimed_by": null,
+    "claimed_at": null,
+    "sold_at": null
   },
   {
     "listing_id": "LST0012",
@@ -245,11 +484,14 @@
     "state": "Delhi",
     "latitude": 28.7536,
     "longitude": 77.1175,
-    "status": "available",
+    "status": "sold",
     "date_listed": "2026-09-07",
     "contact_email": "bharat.pallet.works@business.co.in",
     "description": "Metal strapping coils available in scrap grade condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/metal_strapping_coils.jpg",
+    "claimed_by": "MIHIR",
+    "claimed_at": "2026-09-12T10:31:19.012Z",
+    "sold_at": "2026-09-12T10:31:20.966Z"
   },
   {
     "listing_id": "LST0013",
@@ -266,11 +508,14 @@
     "state": "Gujarat",
     "latitude": 21.191,
     "longitude": 72.787,
-    "status": "available",
+    "status": "sold",
     "date_listed": "2026-09-01",
     "contact_email": "ecobox.solutions@business.co.in",
     "description": "Steel drums available in scrap grade condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/steel_drums.jpg",
+    "claimed_by": "apple",
+    "claimed_at": "2026-09-12T10:29:05.405Z",
+    "sold_at": "2026-09-12T10:29:20.064Z"
   },
   {
     "listing_id": "LST0014",
@@ -287,11 +532,13 @@
     "state": "Madhya Pradesh",
     "latitude": 22.7272,
     "longitude": 75.832,
-    "status": "available",
+    "status": "reserved",
     "date_listed": "2026-08-30",
     "contact_email": "patel.plastics.and.recyclers@gmail.com",
     "description": "Plywood offcuts available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/plywood_offcuts.jpg",
+    "claimed_by": "Bharat Pallet Works",
+    "claimed_at": "2026-09-12T10:15:26.403Z"
   },
   {
     "listing_id": "LST0015",
@@ -312,7 +559,7 @@
     "date_listed": "2026-08-16",
     "contact_email": "vadodara.steel.traders@gmail.com",
     "description": "Die-cut cartons available in fair - recyclable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/die_cut_cartons.jpg"
   },
   {
     "listing_id": "LST0016",
@@ -333,7 +580,7 @@
     "date_listed": "2026-08-11",
     "contact_email": "ambuja.cement.bags.co@packagingco.in",
     "description": "PET bottles/scrap available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/pet_bottles.jpg"
   },
   {
     "listing_id": "LST0017",
@@ -354,7 +601,7 @@
     "date_listed": "2026-08-04",
     "contact_email": "om.sai.cardboard.depot@outlook.com",
     "description": "Paper cores/tubes available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/paper_tubes.svg"
   },
   {
     "listing_id": "LST0018",
@@ -375,7 +622,7 @@
     "date_listed": "2026-08-16",
     "contact_email": "surat.textile.mills@packagingco.in",
     "description": "Die-cut cartons available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/die_cut_cartons.jpg"
   },
   {
     "listing_id": "LST0019",
@@ -396,7 +643,7 @@
     "date_listed": "2026-08-09",
     "contact_email": "everest.foods.packaging@outlook.com",
     "description": "Steel drums available in fair - recyclable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/steel_drums.jpg"
   },
   {
     "listing_id": "LST0020",
@@ -417,7 +664,7 @@
     "date_listed": "2026-08-05",
     "contact_email": "zenith.auto.parts.mfg@business.co.in",
     "description": "Styrofoam (EPS) sheets available in good - reusable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/styrofoam_sheets.jpg"
   },
   {
     "listing_id": "LST0021",
@@ -438,7 +685,7 @@
     "date_listed": "2026-08-07",
     "contact_email": "star.textiles.pvt.ltd@business.co.in",
     "description": "Glass bottles available in good - reusable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/glass_bottles.jpg"
   },
   {
     "listing_id": "LST0022",
@@ -459,7 +706,7 @@
     "date_listed": "2026-08-18",
     "contact_email": "global.traders.warehouse@gmail.com",
     "description": "Broken glass cullet available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/broken_glass_cullet.jpg"
   },
   {
     "listing_id": "LST0023",
@@ -480,7 +727,12 @@
     "date_listed": "2026-08-24",
     "contact_email": "ecobox.solutions@business.co.in",
     "description": "Styrofoam (EPS) sheets available in fair - recyclable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/styrofoam_sheets.jpg",
+    "claimed_by": null,
+    "buyer_email": "sunrise.logistics.pvt.ltd@gmail.com",
+    "buyer_address": "Plot 42, MIDC Industrial Area, Andheri East, Mumbai 400093",
+    "claimed_at": null,
+    "sold_at": null
   },
   {
     "listing_id": "LST0024",
@@ -501,7 +753,7 @@
     "date_listed": "2026-08-27",
     "contact_email": "bharat.pallet.works@business.co.in",
     "description": "Wooden pallets (standard) available in like new condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/wooden_pallets.jpg"
   },
   {
     "listing_id": "LST0025",
@@ -522,7 +774,7 @@
     "date_listed": "2026-08-07",
     "contact_email": "maruti.suzuki.plant.store@packagingco.in",
     "description": "Wooden pallets (standard) available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/wooden_pallets.jpg"
   },
   {
     "listing_id": "LST0026",
@@ -543,10 +795,7 @@
     "date_listed": "2026-08-05",
     "contact_email": "star.textiles.pvt.ltd@outlook.com",
     "description": "Jute bags available in good - reusable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&w=600&q=80",
-    "claimed_by": null,
-    "claimed_at": null,
-    "sold_at": null
+    "image_url": "/images/materials/jute_bags.svg"
   },
   {
     "listing_id": "LST0027",
@@ -567,7 +816,7 @@
     "date_listed": "2026-08-23",
     "contact_email": "nova.glass.recyclers@outlook.com",
     "description": "Shredded paper available in fair - recyclable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/shredded_paper.svg"
   },
   {
     "listing_id": "LST0028",
@@ -588,7 +837,7 @@
     "date_listed": "2026-08-05",
     "contact_email": "purelife.water.bottling@outlook.com",
     "description": "PP strapping available in scrap grade condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1597484661643-2f5fef640dd1?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/pp_strapping.svg"
   },
   {
     "listing_id": "LST0029",
@@ -596,10 +845,10 @@
     "business_type": "Recycler",
     "category": "Foam/Packaging",
     "material_subtype": "Foam packaging inserts",
-    "quantity": 750,
+    "quantity": 600,
     "unit": "pallets",
     "condition": "Scrap Grade",
-    "price_total_inr": 5414.19,
+    "price_total_inr": 4332,
     "price_per_unit_inr": 7.22,
     "city": "Surat",
     "state": "Gujarat",
@@ -609,7 +858,10 @@
     "date_listed": "2026-08-27",
     "contact_email": "everest.foods.packaging@packagingco.in",
     "description": "Foam packaging inserts available in like new condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/foam_inserts.svg",
+    "claimed_by": null,
+    "claimed_at": null,
+    "sold_at": null
   },
   {
     "listing_id": "LST0030",
@@ -630,7 +882,7 @@
     "date_listed": "2026-08-14",
     "contact_email": "tatacliq.fulfillment.center@packagingco.in",
     "description": "Glass jars available in like new condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/glass_jars.jpg"
   },
   {
     "listing_id": "LST0031",
@@ -651,7 +903,7 @@
     "date_listed": "2026-08-16",
     "contact_email": "bharat.pallet.works@packagingco.in",
     "description": "LDPE film/wrap available in scrap grade condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1597484661643-2f5fef640dd1?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/ldpe_film_wrap.svg"
   },
   {
     "listing_id": "LST0032",
@@ -672,7 +924,7 @@
     "date_listed": "2026-08-15",
     "contact_email": "vadodara.steel.traders@business.co.in",
     "description": "PP strapping available in scrap grade condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1597484661643-2f5fef640dd1?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/pp_strapping.svg"
   },
   {
     "listing_id": "LST0033",
@@ -693,7 +945,7 @@
     "date_listed": "2026-08-29",
     "contact_email": "star.textiles.pvt.ltd@packagingco.in",
     "description": "Jute bags available in scrap grade condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/jute_bags.svg"
   },
   {
     "listing_id": "LST0034",
@@ -714,7 +966,7 @@
     "date_listed": "2026-08-19",
     "contact_email": "bharat.pallet.works@business.co.in",
     "description": "Jute bags available in good - reusable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/jute_bags.svg"
   },
   {
     "listing_id": "LST0035",
@@ -735,7 +987,7 @@
     "date_listed": "2026-08-30",
     "contact_email": "ecobox.solutions@packagingco.in",
     "description": "Bubble wrap rolls available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/bubble_wrap.jpg"
   },
   {
     "listing_id": "LST0036",
@@ -756,7 +1008,7 @@
     "date_listed": "2026-08-27",
     "contact_email": "greenpack.industries@business.co.in",
     "description": "Tin containers available in fair - recyclable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/tin_containers.jpg"
   },
   {
     "listing_id": "LST0037",
@@ -777,7 +1029,7 @@
     "date_listed": "2026-08-26",
     "contact_email": "kisan.agro.packaging@gmail.com",
     "description": "Metal strapping coils available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/metal_strapping_coils.jpg"
   },
   {
     "listing_id": "LST0038",
@@ -798,7 +1050,7 @@
     "date_listed": "2026-08-27",
     "contact_email": "adani.retail.distribution.hub@outlook.com",
     "description": "Kraft paper rolls available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/kraft_paper_rolls.jpg"
   },
   {
     "listing_id": "LST0039",
@@ -819,7 +1071,7 @@
     "date_listed": "2026-08-13",
     "contact_email": "gokul.beverages.ltd@gmail.com",
     "description": "Jute bags available in scrap grade condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/jute_bags.svg"
   },
   {
     "listing_id": "LST0040",
@@ -840,7 +1092,7 @@
     "date_listed": "2026-08-08",
     "contact_email": "indus.valley.exports@business.co.in",
     "description": "Wooden pallets (standard) available in good - reusable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/wooden_pallets.jpg"
   },
   {
     "listing_id": "LST0041",
@@ -861,7 +1113,7 @@
     "date_listed": "2026-09-10",
     "contact_email": "om.sai.cardboard.depot@business.co.in",
     "description": "Plastic crates available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/plastic_crates.svg"
   },
   {
     "listing_id": "LST0042",
@@ -882,7 +1134,7 @@
     "date_listed": "2026-08-22",
     "contact_email": "star.textiles.pvt.ltd@gmail.com",
     "description": "Broken glass cullet available in fair - recyclable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/broken_glass_cullet.jpg"
   },
   {
     "listing_id": "LST0043",
@@ -903,7 +1155,7 @@
     "date_listed": "2026-09-04",
     "contact_email": "rathi.metal.works@packagingco.in",
     "description": "Jute bags available in fair - recyclable condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/jute_bags.svg"
   },
   {
     "listing_id": "LST0044",
@@ -924,7 +1176,7 @@
     "date_listed": "2026-08-25",
     "contact_email": "bharat.pallet.works@outlook.com",
     "description": "Shredded paper available in new/unused condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/shredded_paper.svg"
   },
   {
     "listing_id": "LST0045",
@@ -945,6 +1197,6 @@
     "date_listed": "2026-08-13",
     "contact_email": "tatacliq.fulfillment.center@gmail.com",
     "description": "Cotton packaging waste available in like new condition, ideal for reuse or recycling.",
-    "image_url": "https://images.unsplash.com/photo-1590736969955-71cc94801759?auto=format&fit=crop&w=600&q=80"
+    "image_url": "/images/materials/cotton_packaging_waste.svg"
   }
 ]

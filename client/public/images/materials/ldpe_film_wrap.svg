@@ -1,0 +1,95 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans', Inter, -apple-system, sans-serif">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </radialGradient>
+
+    <radialGradient id="floor-shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#1e293b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Cylindrical Roll Gradient (Transparent Sheen over Paper Core) -->
+    <linearGradient id="film-cylinder" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#cbd5e1" stop-opacity="0.9"/>
+      <stop offset="15%" stop-color="#f8fafc" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#e2e8f0" stop-opacity="0.9"/>
+      <stop offset="85%" stop-color="#94a3b8" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#64748b" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <!-- Cardboard Core Gradient -->
+    <linearGradient id="core-inside" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5c3f1e"/>
+      <stop offset="60%" stop-color="#8a6132"/>
+      <stop offset="100%" stop-color="#b38249"/>
+    </linearGradient>
+
+    <linearGradient id="core-top" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b38249"/>
+      <stop offset="50%" stop-color="#d4a36a"/>
+      <stop offset="100%" stop-color="#946532"/>
+    </linearGradient>
+
+    <filter id="roll-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <!-- Studio Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Floor Shadow -->
+  <ellipse cx="400" cy="515" rx="240" ry="34" fill="url(#floor-shadow)"/>
+
+  <!-- Standing Roll Group -->
+  <g filter="url(#roll-shadow)">
+    <!-- Back/Second Smaller Hand Roll lying down -->
+    <g transform="translate(180, 430) rotate(-15)">
+      <rect x="0" y="0" width="180" height="70" rx="8" fill="url(#film-cylinder)" stroke="#94a3b8" stroke-width="1.5"/>
+      <ellipse cx="0" cy="35" rx="14" ry="35" fill="url(#core-top)"/>
+      <ellipse cx="0" cy="35" rx="7" ry="18" fill="url(#core-inside)"/>
+      <ellipse cx="180" cy="35" rx="14" ry="35" fill="#f8fafc" stroke="#94a3b8"/>
+    </g>
+
+    <!-- Main Upright Industrial Pallet Stretch Film Roll -->
+    <g id="main-roll">
+      <!-- Main Cylinder Body -->
+      <rect x="270" y="140" width="260" height="360" fill="url(#film-cylinder)" stroke="#cbd5e1" stroke-width="1.5"/>
+
+      <!-- Cylinder Bottom Curve -->
+      <ellipse cx="400" cy="500" rx="130" ry="32" fill="#94a3b8" stroke="#64748b" stroke-width="1"/>
+      <path d="M270 500 C270 518 330 532 400 532 C470 532 530 518 530 500 Z" fill="#64748b" opacity="0.3"/>
+
+      <!-- Specular Gloss Highlights -->
+      <rect x="330" y="140" width="28" height="360" fill="#ffffff" opacity="0.75"/>
+      <rect x="345" y="140" width="10" height="360" fill="#ffffff" opacity="0.9"/>
+      <rect x="470" y="140" width="16" height="360" fill="#ffffff" opacity="0.4"/>
+
+      <!-- Peeling Transparent Film Edge Leader Tail -->
+      <path d="M530 200 C565 220 595 280 610 380 C585 395 560 380 530 365 Z" fill="#f8fafc" fill-opacity="0.45" stroke="#94a3b8" stroke-width="1.5"/>
+      <path d="M610 380 Q570 340 530 310" stroke="#cbd5e1" stroke-width="2" fill="none"/>
+
+      <!-- Cylinder Top Rim of Film -->
+      <ellipse cx="400" cy="140" rx="130" ry="32" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2"/>
+
+      <!-- Cardboard Core Tube Opening -->
+      <!-- Outer Core Ring -->
+      <ellipse cx="400" cy="140" rx="44" ry="16" fill="url(#core-top)" stroke="#785526" stroke-width="1.5"/>
+      <!-- Inner Core Cavity (Depth) -->
+      <ellipse cx="400" cy="140" rx="36" ry="13" fill="url(#core-inside)"/>
+      <ellipse cx="400" cy="142" rx="34" ry="11" fill="#3b2610"/>
+
+      <!-- Product Label Wrap -->
+      <g transform="translate(270, 270)">
+        <rect x="0" y="0" width="260" height="70" fill="#0284c7" fill-opacity="0.15" stroke="#0284c7" stroke-dasharray="6 4"/>
+        <text x="130" y="32" font-size="16" font-weight="900" fill="#0369a1" text-anchor="middle" letter-spacing="1">LDPE STRETCH WRAP</text>
+        <text x="130" y="52" font-size="12" font-weight="700" fill="#075985" text-anchor="middle" letter-spacing="0.5">23 MICRON • HIGH CLARITY</text>
+      </g>
+    </g>
+  </g>
+</svg>

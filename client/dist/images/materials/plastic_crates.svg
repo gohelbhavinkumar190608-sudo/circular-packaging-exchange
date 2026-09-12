@@ -1,0 +1,122 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans', Inter, -apple-system, sans-serif">
+  <defs>
+    <!-- Studio Background Gradient -->
+    <radialGradient id="bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </radialGradient>
+
+    <!-- Floor Shadow -->
+    <radialGradient id="floor-shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#1e293b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Crate Colors & Gradients -->
+    <linearGradient id="crate-blue-front" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="40%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+
+    <linearGradient id="crate-blue-side" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#075985"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </linearGradient>
+
+    <linearGradient id="crate-blue-top" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="crate-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="20" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Floor Shadow -->
+  <ellipse cx="400" cy="520" rx="310" ry="42" fill="url(#floor-shadow)"/>
+
+  <!-- Stacked Crates Group -->
+  <g filter="url(#crate-shadow)">
+    <!-- BOTTOM CRATE (Heavy duty Dark Blue) -->
+    <g id="bottom-crate">
+      <!-- Front Face -->
+      <polygon points="170,360 460,440 460,515 170,435" fill="url(#crate-blue-front)" stroke="#0369a1" stroke-width="2"/>
+      <!-- Right Side Face -->
+      <polygon points="460,440 640,365 640,440 460,515" fill="url(#crate-blue-side)" stroke="#075985" stroke-width="2"/>
+      <!-- Top Rim Lip -->
+      <polygon points="170,360 350,285 640,365 460,440" fill="url(#crate-blue-top)" stroke="#38bdf8" stroke-width="1.5"/>
+
+      <!-- Front Face Ribbed Grid Lines -->
+      <g stroke="#0c4a6e" stroke-width="3" opacity="0.6">
+        <line x1="220" y1="385" x2="220" y2="445"/>
+        <line x1="270" y1="400" x2="270" y2="460"/>
+        <line x1="320" y1="412" x2="320" y2="475"/>
+        <line x1="370" y1="425" x2="370" y2="490"/>
+        <line x1="420" y1="438" x2="420" y2="502"/>
+        <line x1="170" y1="400" x2="460" y2="480"/>
+      </g>
+
+      <!-- Front Handle Cutout -->
+      <polygon points="290,410 350,426 350,446 290,430" rx="6" fill="#075985" stroke="#0284c7" stroke-width="2"/>
+
+      <!-- Side Ribbed Lines -->
+      <g stroke="#082f49" stroke-width="3" opacity="0.6">
+        <line x1="500" y1="455" x2="500" y2="495"/>
+        <line x1="550" y1="432" x2="550" y2="475"/>
+        <line x1="600" y1="410" x2="600" y2="452"/>
+        <line x1="460" y1="475" x2="640" y2="402"/>
+      </g>
+      <!-- Side Handle Cutout -->
+      <polygon points="530,415 570,398 570,418 530,435" rx="5" fill="#082f49" stroke="#075985" stroke-width="2"/>
+    </g>
+
+    <!-- TOP CRATE (Emerald Green for Recyclable Industrial Packaging) -->
+    <g id="top-crate" transform="translate(0, -115)">
+      <!-- Front Face -->
+      <polygon points="170,360 460,440 460,515 170,435" fill="#059669" stroke="#047857" stroke-width="2"/>
+      <!-- Right Side Face -->
+      <polygon points="460,440 640,365 640,440 460,515" fill="#047857" stroke="#065f46" stroke-width="2"/>
+      <!-- Top Rim Lip -->
+      <polygon points="170,360 350,285 640,365 460,440" fill="#34d399" stroke="#6ee7b7" stroke-width="1.5"/>
+      <!-- Inner Depth -->
+      <polygon points="185,360 350,295 625,365 460,430" fill="#064e3b" opacity="0.6"/>
+
+      <!-- Front Face Ribbed Grid -->
+      <g stroke="#064e3b" stroke-width="3" opacity="0.65">
+        <line x1="220" y1="385" x2="220" y2="445"/>
+        <line x1="270" y1="400" x2="270" y2="460"/>
+        <line x1="320" y1="412" x2="320" y2="475"/>
+        <line x1="370" y1="425" x2="370" y2="490"/>
+        <line x1="420" y1="438" x2="420" y2="502"/>
+        <line x1="170" y1="400" x2="460" y2="480"/>
+      </g>
+
+      <!-- Front Handle Cutout -->
+      <polygon points="290,410 350,426 350,446 290,430" rx="6" fill="#064e3b" stroke="#059669" stroke-width="2"/>
+
+      <!-- Side Ribs -->
+      <g stroke="#022c22" stroke-width="3" opacity="0.65">
+        <line x1="500" y1="455" x2="500" y2="495"/>
+        <line x1="550" y1="432" x2="550" y2="475"/>
+        <line x1="600" y1="410" x2="600" y2="452"/>
+        <line x1="460" y1="475" x2="640" y2="402"/>
+      </g>
+      <!-- Side Handle Cutout -->
+      <polygon points="530,415 570,398 570,418 530,435" rx="5" fill="#022c22" stroke="#047857" stroke-width="2"/>
+
+      <!-- B2B Molded Spec Label -->
+      <g transform="translate(200, 442) rotate(15)">
+        <rect x="0" y="0" width="85" height="24" rx="4" fill="#ffffff" opacity="0.85"/>
+        <text x="42" y="16" font-size="10" font-weight="900" fill="#065f46" text-anchor="middle" letter-spacing="0.5">HDPE • 45L</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,118 +1,170 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
-const { getHaversineDistance, getCityCoordinates, INDIAN_CITIES } = require("../utils/geo");
+const { getHaversineDistance, getRoadDistance, getCityCoordinates, INDIAN_CITIES } = require("../utils/geo");
 const { calculateKg } = require("../utils/impactFactors");
 
 // POST /api/logistics/estimate
+// Accurately calculates freight and transit distance between Company Plant Address and Buyer Delivery Address
 router.post("/estimate", (req, res) => {
   try {
     const {
       listing_id,
+      buyer_name,
       buyer_city,
+      buyer_address,
       buyer_latitude,
       buyer_longitude,
       seller_city,
+      seller_address,
       seller_latitude,
       seller_longitude,
       quantity,
       unit
     } = req.body;
 
+    let sellerCompany = "Enterprise Supplier";
+    let sCity = seller_city;
+    let sState = "";
+    let sAddress = seller_address;
     let sLat = seller_latitude ? parseFloat(seller_latitude) : null;
     let sLng = seller_longitude ? parseFloat(seller_longitude) : null;
-    let sCity = seller_city;
-    let itemPrice = 0;
-    let itemQty = parseFloat(quantity) || 100;
+
+    let unitPrice = 0;
+    let fullQty = 100;
     let itemUnit = unit || "kg";
 
     if (listing_id) {
       const listing = db.getListingById(listing_id);
       if (listing) {
-        sLat = listing.latitude;
-        sLng = listing.longitude;
-        sCity = listing.city;
-        itemPrice = listing.price_total_inr;
-        itemQty = listing.quantity;
+        sellerCompany = listing.business_name || "Enterprise Supplier";
+        sCity = listing.city || "Mumbai";
+        sState = listing.state || "Maharashtra";
+        
+        // Accurate coordinates verification:
+        // If listing coordinates were defaulted to Mumbai while city is not Mumbai, re-resolve from city
+        const cityLookup = getCityCoordinates(sCity);
+        if (cityLookup && sCity.toLowerCase() !== "mumbai" && Math.abs(listing.latitude - 19.0505) < 0.001) {
+          sLat = cityLookup.latitude;
+          sLng = cityLookup.longitude;
+        } else {
+          sLat = listing.latitude || (cityLookup ? cityLookup.latitude : 19.0505);
+          sLng = listing.longitude || (cityLookup ? cityLookup.longitude : 72.8417);
+        }
+
+        sAddress = listing.address || (cityLookup ? cityLookup.defaultAddress : `${sCity} Industrial Zone`);
+        fullQty = listing.quantity;
         itemUnit = listing.unit;
+        unitPrice = listing.price_per_unit_inr || (fullQty > 0 ? listing.price_total_inr / fullQty : 0);
       }
-    } else if (seller_city && (sLat == null || sLng == null)) {
+    } else if (seller_city) {
       const cityData = getCityCoordinates(seller_city);
       if (cityData) {
-        sLat = cityData.latitude;
-        sLng = cityData.longitude;
+        sLat = sLat || cityData.latitude;
+        sLng = sLng || cityData.longitude;
+        sCity = cityData.city;
+        sState = cityData.state;
+        sAddress = sAddress || cityData.defaultAddress;
       }
     }
 
+    // Determine requested quantity (defaults to full lot if not specified)
+    const requestedQty = quantity != null && !isNaN(Number(quantity)) && Number(quantity) > 0
+      ? Number(quantity)
+      : fullQty;
+
+    const itemPrice = Math.round(requestedQty * unitPrice);
+
+    // Buyer location resolution
+    let bCity = buyer_city || "Mumbai";
+    let bState = "";
     let bLat = buyer_latitude ? parseFloat(buyer_latitude) : null;
     let bLng = buyer_longitude ? parseFloat(buyer_longitude) : null;
-    let bCity = buyer_city;
 
-    if (buyer_city && (bLat == null || bLng == null)) {
-      const cityData = getCityCoordinates(buyer_city);
-      if (cityData) {
-        bLat = cityData.latitude;
-        bLng = cityData.longitude;
+    const buyerCityData = getCityCoordinates(bCity);
+    if (buyerCityData) {
+      bCity = buyerCityData.city;
+      bState = buyerCityData.state;
+      if (bLat == null || bLng == null) {
+        bLat = buyerCityData.latitude;
+        bLng = buyerCityData.longitude;
       }
+    } else {
+      bLat = bLat || 19.0505;
+      bLng = bLng || 72.8417;
     }
 
-    // Default buyer to Mumbai if not specified
-    if (bLat == null || bLng == null) {
-      bLat = 19.0505;
-      bLng = 72.8417;
-      bCity = bCity || "Mumbai";
-    }
+    const bAddress = buyer_address || (buyerCityData ? buyerCityData.defaultAddress : `${bCity} Hub`);
+    const buyerCompany = buyer_name || "Purchasing Enterprise";
 
     if (sLat == null || sLng == null) {
-      return res.status(400).json({
-        success: false,
-        error: "Seller location coordinates could not be determined."
-      });
+      sLat = 19.0505;
+      sLng = 72.8417;
     }
 
-    const distanceKm = getHaversineDistance(bLat, bLng, sLat, sLng);
-    const weightKg = calculateKg(itemQty, itemUnit);
+    // Accurate road transit distance (km) between Company Plant and Buyer Delivery Hub
+    const straightKm = getHaversineDistance(sLat, sLng, bLat, bLng);
+    const roadDistanceKm = getRoadDistance(sLat, sLng, bLat, bLng);
+    const weightKg = calculateKg(requestedQty, itemUnit);
 
-    // B2B Industrial Freight pricing formula:
-    // Base Dispatch Fee: ₹1,200 (covers local loading, dock handling, documentation)
-    // Distance Fee: ₹16 - ₹22 per km depending on truck capacity
-    // Weight factor: small surcharge if over 5,000 kg (5 tons)
+    // B2B Industrial Freight Tariffs (India):
+    // Base Dispatch Fee: ₹1,200 (terminal handling, dock staging, e-way bill documentation)
+    // Distance Fee: ₹16.5 - ₹22.0 per km depending on cargo tonnage
     const baseFee = 1200;
-    const perKmRate = weightKg > 5000 ? 22.0 : 16.5;
-    const distanceCost = Math.round(distanceKm * perKmRate);
-    
-    // Total estimated logistics fee
+    const perKmRate = weightKg > 5000 ? 22.0 : (weightKg > 1000 ? 18.5 : 16.5);
+    const distanceCost = Math.round(roadDistanceKm * perKmRate);
     const estimatedFreightInr = baseFee + distanceCost;
 
-    // Transit time estimation
+    // Commercial Truck Transit Time estimation based on Indian Highway speeds (avg 40-50 km/h with toll/rest stops)
     let transitHours = 0;
     let transitDescription = "";
-    if (distanceKm <= 75) {
-      transitHours = 6;
-      transitDescription = "Same-Day Direct Dispatch (4-8 hours)";
-    } else if (distanceKm <= 250) {
+    if (roadDistanceKm <= 50) {
+      transitHours = 4;
+      transitDescription = "Local Same-Day Direct Dispatch (2-4 hours)";
+    } else if (roadDistanceKm <= 150) {
+      transitHours = 8;
+      transitDescription = "Regional Same-Day Delivery (6-8 hours)";
+    } else if (roadDistanceKm <= 350) {
       transitHours = 18;
-      transitDescription = "Next-Day Delivery (18-24 hours)";
-    } else if (distanceKm <= 600) {
-      transitHours = 36;
-      transitDescription = "Regional Freight (1-2 business days)";
-    } else if (distanceKm <= 1200) {
+      transitDescription = "Next-Day Delivery (14-18 hours)";
+    } else if (roadDistanceKm <= 750) {
+      transitHours = 32;
+      transitDescription = "Interstate Express Corridor (24-36 hours)";
+    } else if (roadDistanceKm <= 1500) {
       transitHours = 60;
-      transitDescription = "Interstate Long-Haul (2-3 business days)";
+      transitDescription = "Long-Haul Interstate Freight (2-3 business days)";
     } else {
       transitHours = 96;
-      transitDescription = "National Interstate (3-5 business days)";
+      transitDescription = "Trans-National Heavy Freight (3-5 business days)";
     }
 
-    const totalLandedCostInr = Math.round(itemPrice + estimatedFreightInr);
+    const totalLandedCostInr = itemPrice + estimatedFreightInr;
     const landedCostPerUnitInr =
-      itemQty > 0 ? Math.round((totalLandedCostInr / itemQty) * 100) / 100 : totalLandedCostInr;
+      requestedQty > 0 ? Math.round((totalLandedCostInr / requestedQty) * 100) / 100 : totalLandedCostInr;
 
     res.json({
       success: true,
-      origin: { city: sCity, latitude: sLat, longitude: sLng },
-      destination: { city: bCity, latitude: bLat, longitude: bLng },
-      distance_km: distanceKm,
+      origin: {
+        company: sellerCompany,
+        address: sAddress,
+        city: sCity,
+        state: sState,
+        latitude: sLat,
+        longitude: sLng
+      },
+      destination: {
+        company: buyerCompany,
+        address: bAddress,
+        city: bCity,
+        state: bState,
+        latitude: bLat,
+        longitude: bLng
+      },
+      distance_km: roadDistanceKm,
+      straight_line_km: straightKm,
+      requested_quantity: requestedQty,
+      unit: itemUnit,
+      unit_price_inr: unitPrice,
       weight_kg_approx: weightKg,
       rate_breakdown: {
         base_dispatch_fee_inr: baseFee,

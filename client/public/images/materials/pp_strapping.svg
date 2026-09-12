@@ -1,0 +1,99 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans', Inter, -apple-system, sans-serif">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </radialGradient>
+
+    <radialGradient id="floor-shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#1e293b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Coil Ribbon Gradient -->
+    <linearGradient id="strap-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="40%" stop-color="#0284c7"/>
+      <stop offset="80%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </linearGradient>
+
+    <linearGradient id="strap-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="50%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#a16207"/>
+    </linearGradient>
+
+    <!-- Cardboard core -->
+    <linearGradient id="cardboard" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8a6132"/>
+      <stop offset="50%" stop-color="#d4a36a"/>
+      <stop offset="100%" stop-color="#6e4920"/>
+    </linearGradient>
+
+    <filter id="coil-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="20" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Floor Shadow -->
+  <ellipse cx="400" cy="510" rx="290" ry="38" fill="url(#floor-shadow)"/>
+
+  <!-- Coils Group -->
+  <g filter="url(#coil-shadow)">
+    <!-- Back Coil (Vibrant Yellow PP Strapping) -->
+    <g transform="translate(430, 290) rotate(12 0 0)">
+      <!-- Outer Coil Ring -->
+      <ellipse cx="0" cy="0" rx="160" ry="110" fill="url(#strap-yellow)" stroke="#ca8a04" stroke-width="3"/>
+      <!-- Concentric Ribbon Windings -->
+      <ellipse cx="0" cy="0" rx="145" ry="100" fill="none" stroke="#facc15" stroke-width="3"/>
+      <ellipse cx="0" cy="0" rx="130" ry="89" fill="none" stroke="#a16207" stroke-width="2.5"/>
+      <ellipse cx="0" cy="0" rx="115" ry="79" fill="none" stroke="#fef08a" stroke-width="2"/>
+      <ellipse cx="0" cy="0" rx="100" ry="69" fill="none" stroke="#854d0e" stroke-width="2"/>
+      <!-- Center Core -->
+      <ellipse cx="0" cy="0" rx="85" ry="58" fill="url(#cardboard)" stroke="#713f12" stroke-width="2"/>
+      <ellipse cx="0" cy="0" rx="65" ry="44" fill="#3b220c"/>
+    </g>
+
+    <!-- Front Coil (Industrial Blue PP Strapping) Standing on Edge -->
+    <g id="front-coil" transform="translate(300, 320)">
+      <!-- Main Cylinder of Wound Strap -->
+      <!-- Side Thickness Face -->
+      <path d="M-150,0 C-150,90 -80,160 30,160 C140,160 210,90 210,0 L180,-30 C180,60 110,130 0,130 C-110,130 -180,60 -180,-30 Z" fill="#0369a1" stroke="#075985" stroke-width="2"/>
+      
+      <!-- Front Circular Ring of Wound Strapping -->
+      <ellipse cx="0" cy="0" rx="180" ry="140" fill="url(#strap-blue)" stroke="#0284c7" stroke-width="3"/>
+      
+      <!-- High-density concentric wound layers -->
+      <ellipse cx="0" cy="0" rx="165" ry="128" fill="none" stroke="#38bdf8" stroke-width="3" opacity="0.8"/>
+      <ellipse cx="0" cy="0" rx="150" ry="116" fill="none" stroke="#075985" stroke-width="3"/>
+      <ellipse cx="0" cy="0" rx="135" ry="104" fill="none" stroke="#7dd3fc" stroke-width="2.5" opacity="0.7"/>
+      <ellipse cx="0" cy="0" rx="120" ry="92" fill="none" stroke="#0c4a6e" stroke-width="2.5"/>
+      <ellipse cx="0" cy="0" rx="105" ry="80" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.8"/>
+      <ellipse cx="0" cy="0" rx="90" ry="68" fill="none" stroke="#082f49" stroke-width="3"/>
+
+      <!-- Inner Cardboard Tube Core -->
+      <ellipse cx="0" cy="0" rx="80" ry="60" fill="url(#cardboard)" stroke="#6e4920" stroke-width="2"/>
+      <!-- Hole / Void inside -->
+      <ellipse cx="0" cy="0" rx="60" ry="45" fill="#2d1c0b"/>
+
+      <!-- Free Ribbon Tail with Metal Crimp Seal -->
+      <path d="M-140,90 Q-170,140 -200,160 Q-230,180 -250,195" fill="none" stroke="#0284c7" stroke-width="12" stroke-linecap="round"/>
+      <path d="M-140,90 Q-170,140 -200,160 Q-230,180 -250,195" fill="none" stroke="#38bdf8" stroke-width="3" stroke-dasharray="2 3"/>
+
+      <!-- Galvanized Steel Strapping Seal / Clip -->
+      <rect x="-215" y="160" width="30" height="20" rx="3" fill="#e2e8f0" stroke="#64748b" stroke-width="2" transform="rotate(-30 -200 170)"/>
+
+      <!-- Embossed Specification Label -->
+      <g transform="translate(30, 40) rotate(-10)">
+        <rect x="0" y="0" width="110" height="26" rx="5" fill="#ffffff" opacity="0.9" stroke="#0284c7"/>
+        <text x="55" y="17" font-size="11" font-weight="900" fill="#0369a1" text-anchor="middle" letter-spacing="0.5">PP 12mm x 0.8mm</text>
+      </g>
+    </g>
+  </g>
+</svg>

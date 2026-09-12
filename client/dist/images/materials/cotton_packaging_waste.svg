@@ -1,0 +1,123 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" font-family="'Plus Jakarta Sans', Inter, -apple-system, sans-serif">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </radialGradient>
+
+    <radialGradient id="floor-shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#1e293b" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="bale-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="20" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+
+    <!-- Cotton Puff Texture Gradients -->
+    <radialGradient id="cotton-puff-main" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#f8fafc"/>
+      <stop offset="85%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </radialGradient>
+
+    <radialGradient id="cotton-puff-warm" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#fefce8"/>
+      <stop offset="100%" stop-color="#fef08a"/>
+    </radialGradient>
+
+    <!-- Strapping Band Gradient -->
+    <linearGradient id="band-strap" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#15803d"/>
+      <stop offset="50%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#166534"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Floor Shadow -->
+  <ellipse cx="400" cy="510" rx="290" ry="38" fill="url(#floor-shadow)"/>
+
+  <!-- Cotton Bale Group -->
+  <g filter="url(#bale-shadow)">
+    <!-- Main Compressed Cotton Bale Body (Pillowy Rectangular Block) -->
+    <g id="bale-body">
+      <!-- Base Soft Block -->
+      <path d="M220 220 
+               C200 240 190 280 185 340 
+               C180 400 190 460 215 480 
+               C240 495 320 505 400 505 
+               C480 505 560 495 585 480 
+               C610 460 620 400 615 340 
+               C610 280 600 240 580 220 
+               C550 200 480 190 400 190 
+               C320 190 250 200 220 220 Z" 
+            fill="url(#cotton-puff-main)" stroke="#cbd5e1" stroke-width="2"/>
+
+      <!-- Volumetric Fluffy Cloud / Boll Lobes across front -->
+      <!-- Top Row Puffs -->
+      <circle cx="280" cy="240" r="55" fill="url(#cotton-puff-main)" opacity="0.9"/>
+      <circle cx="360" cy="230" r="60" fill="url(#cotton-puff-main)" opacity="0.95"/>
+      <circle cx="440" cy="230" r="60" fill="url(#cotton-puff-main)" opacity="0.95"/>
+      <circle cx="520" cy="240" r="55" fill="url(#cotton-puff-main)" opacity="0.9"/>
+
+      <!-- Mid Row Puffs -->
+      <circle cx="240" cy="340" r="65" fill="url(#cotton-puff-main)"/>
+      <circle cx="320" cy="330" r="70" fill="url(#cotton-puff-main)"/>
+      <circle cx="400" cy="320" r="75" fill="url(#cotton-puff-main)"/>
+      <circle cx="480" cy="330" r="70" fill="url(#cotton-puff-main)"/>
+      <circle cx="560" cy="340" r="65" fill="url(#cotton-puff-main)"/>
+
+      <!-- Bottom Row Puffs -->
+      <circle cx="260" cy="440" r="65" fill="url(#cotton-puff-main)"/>
+      <circle cx="340" cy="450" r="70" fill="url(#cotton-puff-main)"/>
+      <circle cx="420" cy="455" r="70" fill="url(#cotton-puff-main)"/>
+      <circle cx="500" cy="450" r="70" fill="url(#cotton-puff-main)"/>
+      <circle cx="550" cy="430" r="60" fill="url(#cotton-puff-main)"/>
+
+      <!-- Organic Surface Creases and Fiber Whistles -->
+      <g stroke="#94a3b8" stroke-width="2" fill="none" opacity="0.45" stroke-linecap="round">
+        <path d="M290 280 Q320 310 350 290"/>
+        <path d="M370 280 Q400 310 430 285"/>
+        <path d="M450 285 Q480 310 510 280"/>
+        <path d="M270 380 Q310 410 350 385"/>
+        <path d="M360 390 Q400 420 440 390"/>
+        <path d="M450 385 Q490 415 530 380"/>
+      </g>
+
+      <!-- Whispy Raw Cotton Fiber Strands Escaping Edges -->
+      <g stroke="#cbd5e1" stroke-width="2" fill="none" stroke-linecap="round">
+        <path d="M190 290 Q160 280 170 260"/>
+        <path d="M185 360 Q150 370 165 395"/>
+        <path d="M610 290 Q640 280 630 260"/>
+        <path d="M615 360 Q650 370 635 395"/>
+        <path d="M320 190 Q310 160 335 150"/>
+        <path d="M480 190 Q490 160 465 150"/>
+      </g>
+
+      <!-- Bale Binding Straps (Green Eco Strapping bands) -->
+      <!-- Left Strap -->
+      <path d="M300 190 C290 280 290 410 300 505" stroke="url(#band-strap)" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <path d="M300 190 C290 280 290 410 300 505" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.5"/>
+      <!-- Right Strap -->
+      <path d="M500 190 C510 280 510 410 500 505" stroke="url(#band-strap)" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <path d="M500 190 C510 280 510 410 500 505" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.5"/>
+
+      <!-- Center B2B Material Tag / Bale Label -->
+      <g transform="translate(340, 310)">
+        <rect x="0" y="0" width="120" height="70" rx="8" fill="#ffffff" stroke="#16a34a" stroke-width="2" filter="url(#bale-shadow)"/>
+        <!-- Eco Leaf Icon -->
+        <circle cx="60" cy="22" r="14" fill="#dcfce7"/>
+        <path d="M60 14 C54 18 54 26 60 28 C66 26 66 18 60 14 Z" fill="#16a34a"/>
+        <text x="60" y="46" font-size="11" font-weight="900" fill="#14532d" text-anchor="middle" letter-spacing="0.5">100% RAW COTTON</text>
+        <text x="60" y="60" font-size="9" font-weight="800" fill="#166534" text-anchor="middle">TEXTILE WASTE BALE</text>
+      </g>
+    </g>
+  </g>
+</svg>
